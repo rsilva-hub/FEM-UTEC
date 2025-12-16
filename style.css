@@ -1,74 +1,135 @@
-/* Reset básico */
+/* =========================
+   GLOBAL
+   ========================= */
+
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #000;
-  color: #fff;
-}
-
-a {
-  color: #00bfff; /* celeste */
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.header, .footer {
-  text-align: center;
-  padding: 2rem;
-  background-color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #FFFFFF;
+  color: #000000;
+  line-height: 1.6;
 }
 
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
 }
 
-/* Main content */
-main h2, main h3 {
-  color: #fff;
+/* =========================
+   HEADER
+   ========================= */
+
+.header {
+  border-bottom: 3px solid #2DA9E9;
 }
 
-.home-blocks {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
+.title {
+  font-size: 28px;
+  margin-bottom: 5px;
 }
 
-.block {
-  flex: 1;
-  padding: 1rem;
-  background-color: #111;
-  border-radius: 10px;
+.subtitle {
+  font-size: 18px;
+  color: #2DA9E9;
+  margin-bottom: 25px;
 }
 
-/* Lecturers Banner */
-.lecturers-banner {
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  padding: 3rem 1rem;
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 500;
 }
 
-.lecturers-logos img {
-  max-height: 80px;
-  margin: 1rem;
+.nav a:hover {
+  color: #2DA9E9;
 }
 
-/* Organization Banner */
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
+section {
+  margin-bottom: 50px;
+}
+
+h2 {
+  border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* =========================
+   ORGANIZATION BANNER
+   ========================= */
+
 .organization-banner {
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  padding: 3rem 1rem;
+  background: #000000;
+  color: #FFFFFF;
+  padding: 70px 0;
+}
+
+.organization-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.organization-banner h2 {
+  color: #FFFFFF;
+  border-bottom: 2px solid #2DA9E9;
+}
+
+.organization-banner p {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* =========================
+   ORGANIZATION LOGOS
+   ========================= */
+
+.organization-logos {
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .organization-logos img {
-  max-height: 80px;
-  margin: 1rem;
+  height: 50px;
+  opacity: 1;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  border-top: 1px solid #2DA9E9;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .nav a {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .organization-logos {
+    justify-content: center;
+  }
 }
 
