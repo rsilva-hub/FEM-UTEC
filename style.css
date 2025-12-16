@@ -1,3 +1,6 @@
+/* =========================
+   BODY & CONTAINER
+   ========================= */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -15,7 +18,6 @@ body {
 /* =========================
    HEADER
    ========================= */
-
 .header {
   border-bottom: 3px solid #2DA9E9;
 }
@@ -34,7 +36,6 @@ body {
 /* =========================
    NAVIGATION
    ========================= */
-
 .nav a {
   margin-right: 20px;
   text-decoration: none;
@@ -49,7 +50,6 @@ body {
 /* =========================
    MAIN CONTENT
    ========================= */
-
 section {
   margin-bottom: 50px;
 }
@@ -63,11 +63,11 @@ h2 {
 /* =========================
    LECTURERS BANNER
    ========================= */
-
 .lecturers-banner {
   background: #000000;
   color: #FFFFFF;
   padding: 70px 0;
+  text-align: center;
 }
 
 .lecturers-container {
@@ -87,30 +87,59 @@ h2 {
 }
 
 /* =========================
-   LECTURERS LOGOS
+   LECTURERS CAROUSEL
    ========================= */
-
-.lecturers-logos {
+.carousel {
+  position: relative;
+  overflow: hidden;
   margin-top: 30px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
 }
 
-.lecturers-logos img {
-  height: 50px;
-  filter: brightness(0) invert(1);
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 25%; /* 4 imágenes visibles en desktop */
+  max-width: 25%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  filter: brightness(0) invert(1); /* estilo similar a logos */
   opacity: 0.9;
 }
+
+/* Botones de navegación */
+button.prev, button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }
 
 /* =========================
    ORGANIZATION BANNER
    ========================= */
-
 .organization-banner {
   background: #000000;
   color: #FFFFFF;
   padding: 70px 0;
+  text-align: center;
 }
 
 .organization-container {
@@ -132,7 +161,6 @@ h2 {
 /* =========================
    ORGANIZATION LOGOS
    ========================= */
-
 .organization-logos {
   margin-top: 30px;
   display: flex;
@@ -149,7 +177,6 @@ h2 {
 /* =========================
    FOOTER
    ========================= */
-
 .footer {
   border-top: 1px solid #2DA9E9;
   text-align: center;
@@ -160,17 +187,32 @@ h2 {
 /* =========================
    RESPONSIVE
    ========================= */
+@media (max-width: 1024px) {
+  .carousel-slide {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
 
 @media (max-width: 768px) {
-
   .nav a {
     display: block;
     margin-bottom: 10px;
   }
 
-  .organization-logos {
+  .carousel-slide {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .organization-logos, .lecturers-logos {
     justify-content: center;
   }
 }
 
-
+@media (max-width: 480px) {
+  .carousel-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
