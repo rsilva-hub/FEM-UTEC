@@ -12,6 +12,10 @@ body {
   padding: 40px 20px;
 }
 
+/* =========================
+   HEADER
+   ========================= */
+
 .header {
   border-bottom: 3px solid #2DA9E9;
 }
@@ -27,6 +31,10 @@ body {
   margin-bottom: 25px;
 }
 
+/* =========================
+   NAVIGATION
+   ========================= */
+
 .nav a {
   margin-right: 20px;
   text-decoration: none;
@@ -38,6 +46,10 @@ body {
   color: #2DA9E9;
 }
 
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
 section {
   margin-bottom: 50px;
 }
@@ -48,16 +60,13 @@ h2 {
   padding-bottom: 5px;
 }
 
-.footer {
-  border-top: 1px solid #2DA9E9;
-  text-align: center;
-  font-size: 14px;
-  padding: 20px 0;
-}
+/* =========================
+   HOME BLOCKS
+   ========================= */
 
 .home-blocks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   margin-top: 60px;
 }
@@ -71,15 +80,94 @@ h2 {
 .block h3 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #000000;
 }
 
-.block-dark {
+/* =========================
+   ORGANIZATION BANNER
+   ========================= */
+
+.organization-banner {
   background: #000000;
   color: #FFFFFF;
-  border: 2px solid #000000;
+  padding: 60px 0;
 }
 
-.block-dark h3 {
-  color: #FFFFFF;
+.organization-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
 }
+
+.organization-text {
+  max-width: 45%;
+}
+
+.organization-text h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.organization-text p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* =========================
+   ORGANIZATION LOGOS
+   ========================= */
+
+.organization-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: flex-end;
+}
+
+.organization-logos img {
+  height: 50px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  border-top: 1px solid #2DA9E9;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* =========================
+   RESPONSIVE (MOBILE)
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .home-blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .organization-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .organization-text {
+    max-width: 100%;
+  }
+
+  .organization-logos {
+    justify-content: center;
+  }
+}
+
