@@ -63,6 +63,31 @@ h2 {
   display: inline-block;
   padding-bottom: 5px;
 }
+/* =========================
+   LECTURERS BANNER
+   ========================= */
+
+.lecturers-banner {
+  background: #000000;
+  color: #FFFFFF;
+  padding: 70px 0;
+}
+
+.lecturers-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.lecturers-banner h2 {
+  color: #FFFFFF;
+  border-bottom: 2px solid #2DA9E9;
+}
+
+.lecturers-banner p {
+  margin-top: 20px;
+  line-height: 1.6;
+}
 
 /* =========================
    ORGANIZATION BANNER
