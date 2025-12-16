@@ -67,7 +67,7 @@ h2 {
   background: #000000;
   color: #FFFFFF;
   padding: 70px 0;
-  text-align: center;
+  text-align: left;
 }
 
 .lecturers-container {
@@ -139,7 +139,7 @@ button.next { right: 10px; }
   background: #000000;
   color: #FFFFFF;
   padding: 70px 0;
-  text-align: center;
+  text-align: left;
 }
 
 .organization-container {
