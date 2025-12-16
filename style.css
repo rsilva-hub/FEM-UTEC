@@ -54,3 +54,32 @@ h2 {
   font-size: 14px;
   padding: 20px 0;
 }
+
+.home-blocks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.block {
+  border: 2px solid #2DA9E9;
+  padding: 25px;
+  background: #FFFFFF;
+}
+
+.block h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.block-dark {
+  background: #000000;
+  color: #FFFFFF;
+  border: 2px solid #000000;
+}
+
+.block-dark h3 {
+  color: #FFFFFF;
+}
