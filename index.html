@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Curso FEM y Simulación No Lineal - Lecturers</title>
   <link rel="stylesheet" href="style.css">
+
   <style>
     /* ================= LECTURERS BANNER ================= */
     .lecturers-banner {
       background-color: #000;
       color: #fff;
       text-align: left;
-      padding: 3rem 1rem;
+      padding: 3rem 0; /* sin padding lateral */
+      width: 100%;
     }
 
     .lecturers-container {
-      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1rem; /* padding interno */
     }
 
     /* Carrusel */
@@ -33,7 +35,7 @@
     }
 
     .carousel-slide {
-      flex: 0 0 25%; /* 4 imágenes visibles */
+      flex: 0 0 25%;
       max-width: 25%;
       padding: 10px;
       box-sizing: border-box;
@@ -97,34 +99,38 @@
     </p>
   </section>
 
-  <!-- ================= LECTURERS BANNER + CAROUSEL ================= -->
-  <section class="lecturers-banner">
-    <div class="lecturers-container">
-      <h2>LECTURERS</h2>
-      <p>
-        Instructors and teaching fellows with experience in finite element
-        modeling, nonlinear analysis, and advanced structural applications.
-      </p>
+</main>
 
-      <!-- Carrusel -->
-      <div class="carousel">
-        <div class="carousel-container">
-          <div class="carousel-slide"><img src="images/other1.png" alt="Other1"></div>
-          <div class="carousel-slide"><img src="images/other2.png" alt="Other2"></div>
-          <div class="carousel-slide"><img src="images/other3.png" alt="Other3"></div>
-          <div class="carousel-slide"><img src="images/other4.png" alt="Other4"></div>
-          <div class="carousel-slide"><img src="images/other5.png" alt="Other5"></div>
-          <div class="carousel-slide"><img src="images/other6.png" alt="Other6"></div>
-          <div class="carousel-slide"><img src="images/other7.png" alt="Other7"></div>
-          <div class="carousel-slide"><img src="images/other8.png" alt="Other8"></div>
-        </div>
-        <button class="prev" onclick="prevSlide()">&#10094;</button>
-        <button class="next" onclick="nextSlide()">&#10095;</button>
+<!-- ================= LECTURERS BANNER (FULL WIDTH) ================= -->
+<section class="lecturers-banner">
+  <div class="lecturers-container">
+    <h2>LECTURERS</h2>
+    <p>
+      Instructors and teaching fellows with experience in finite element
+      modeling, nonlinear analysis, and advanced structural applications.
+    </p>
+
+    <div class="carousel">
+      <div class="carousel-container">
+        <div class="carousel-slide"><img src="images/other1.png"></div>
+        <div class="carousel-slide"><img src="images/other2.png"></div>
+        <div class="carousel-slide"><img src="images/other3.png"></div>
+        <div class="carousel-slide"><img src="images/other4.png"></div>
+        <div class="carousel-slide"><img src="images/other5.png"></div>
+        <div class="carousel-slide"><img src="images/other6.png"></div>
+        <div class="carousel-slide"><img src="images/other7.png"></div>
+        <div class="carousel-slide"><img src="images/other8.png"></div>
       </div>
-    </div>
-  </section>
 
-  <!-- HOME BLOCKS -->
+      <button class="prev" onclick="prevSlide()">&#10094;</button>
+      <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAIN CONTENT CONTINUES ================= -->
+<main class="container">
+
   <section class="home-blocks">
     <div class="block">
       <h3>VENUE</h3>
@@ -164,7 +170,7 @@
 const container = document.querySelector('.carousel-container');
 const slides = document.querySelectorAll('.carousel-slide');
 let currentIndex = 0;
-const visibleSlides = 4; // número de imágenes visibles a la vez
+const visibleSlides = 4;
 const totalSlides = slides.length;
 
 function updateCarousel() {
@@ -173,24 +179,15 @@ function updateCarousel() {
 }
 
 function nextSlide() {
-  if(currentIndex < totalSlides - visibleSlides){
-    currentIndex++;
-  } else {
-    currentIndex = 0; // reinicia al inicio
-  }
+  currentIndex = (currentIndex < totalSlides - visibleSlides) ? currentIndex + 1 : 0;
   updateCarousel();
 }
 
 function prevSlide() {
-  if(currentIndex > 0){
-    currentIndex--;
-  } else {
-    currentIndex = totalSlides - visibleSlides;
-  }
+  currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - visibleSlides;
   updateCarousel();
 }
 
-// Cambio automático cada 15 segundos
 setInterval(nextSlide, 15000);
 </script>
 
