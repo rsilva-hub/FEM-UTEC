@@ -136,8 +136,8 @@ button.next { right: 10px; }
    VENUE BANNER
    ========================= */
 .venue-banner {
-  background: #000000;
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: #000000;
   padding: 70px 0;
   text-align: left;
 }
@@ -149,7 +149,7 @@ button.next { right: 10px; }
 }
 
 .venue-banner h2 {
-  color: #FFFFFF;
+  color: #000000;
   border-bottom: 2px solid #2DA9E9;
 }
 
