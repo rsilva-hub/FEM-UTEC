@@ -67,7 +67,7 @@ h2 {
    COURSE OVERVIEW HERO
    ========================= */
 .overview-hero {
-  position: relative;              /* 🔧 necesario para SVG */
+  position: relative;
   min-height: 85vh;
   padding: 120px 20px;
   display: flex;
@@ -75,22 +75,17 @@ h2 {
   justify-content: center;
   overflow: hidden;
 
-  /* 🔧 degradado más suave para que se vean ondas y malla */
-  background:
-    linear-gradient(
-      rgba(255,255,255,0.85),
-      rgba(220,235,250,0.75),
-      rgba(0,0,0,0.70)
-    );
+  /* ✅ IMAGEN GENERADA (mirror + degradado a negro ya incluidos) */
+  background: url("images/overview-bg.png") center / cover no-repeat;
 }
 
-/* 🔧 SVG como fondo REAL */
-.overview-hero::before {
+/* Overlay mínimo SOLO para asegurar legibilidad */
+.overview-hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("images/overview-bg.svg") center / cover no-repeat;
-  z-index: 0;
+  background: rgba(255,255,255,0.06);
+  pointer-events: none;
 }
 
 .overview-content {
