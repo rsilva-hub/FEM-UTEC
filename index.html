@@ -1,48 +1,259 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Curso FEM y Simulación No Lineal</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso FEM y Simulación No Lineal</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== HERO CON SVG FEM ===== */
+    .overview-hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      background:
+        linear-gradient(
+          rgba(255,255,255,0.92),
+          rgba(220,235,250,0.85),
+          rgba(0,0,0,0.85)
+        ),
+        url("images/overview-bg.svg");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overview-content {
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .overview-hero h2 {
+      color: #000;
+    }
+
+    .overview-hero p {
+      color: #222;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ===== FULL WIDTH BANNERS ===== */
+    .lecturers-banner,
+    .organization-banner {
+      background: #000;
+      color: #fff;
+      padding: 70px 0;
+    }
+
+    .lecturers-container,
+    .organization-container,
+    .venue-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .lecturers-banner h2,
+    .organization-banner h2,
+    .venue-banner h2 {
+      border-bottom: 2px solid #2DA9E9;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* ===== CAROUSEL ===== */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+
+    .carousel-container {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      flex: 0 0 25%;
+      max-width: 25%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #eee;
+    }
+
+    button.prev,
+    button.next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    button.prev { left: 10px; }
+    button.next { right: 10px; }
+
+    @media (max-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carousel-slide {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-
+<!-- ================= HEADER ================= -->
 <header class="header">
-<div class="container">
-<h1 class="title">Fundamentos del Método de Elementos Finitos y Simulación No Lineal de Estructuras Especiales</h1>
-<p class="subtitle">Curso teórico-práctico</p>
-<nav class="nav">
-<a href="index.html">Home</a>
-<a href="program.html">Program</a>
-<a href="lecturers.html">Lecturers</a>
-<a href="venue.html">Venue</a>
-<a href="students.html">For Students</a>
-<a href="about.html">About Us</a>
-</nav>
-</div>
+  <div class="container">
+    <h1 class="title">
+      Fundamentos del Método de Elementos Finitos y
+      Simulación No Lineal de Estructuras Especiales
+    </h1>
+    <p class="subtitle">Curso teórico-práctico</p>
+
+    <nav class="nav">
+      <a href="#overview">Home</a>
+      <a href="#lecturers">Lecturers</a>
+      <a href="#venue">Venue</a>
+      <a href="#organization">Organization</a>
+    </nav>
+  </div>
 </header>
 
-
-<section class="overview-hero">
-<div class="overview-content">
-<h2>Course Overview</h2>
-<p>
-Curso teórico-práctico orientado a los fundamentos del método de elementos
-finitos y la simulación no lineal de estructuras especiales, con aplicaciones
-en ingeniería estructural avanzada y mecánica computacional.
-</p>
-</div>
+<!-- ================= COURSE OVERVIEW (SVG HERO) ================= -->
+<section class="overview-hero" id="overview">
+  <div class="overview-content">
+    <h2>Course Overview</h2>
+    <p>
+      Curso teórico-práctico orientado a los fundamentos del método de elementos
+      finitos y la simulación no lineal de estructuras especiales, con énfasis en
+      aplicaciones avanzadas en ingeniería estructural y mecánica computacional.
+    </p>
+  </div>
 </section>
 
+<!-- ================= LECTURERS ================= -->
+<section class="lecturers-banner" id="lecturers">
+  <div class="lecturers-container">
+    <h2>LECTURERS</h2>
+    <p>
+      Instructors and teaching fellows with experience in finite element modeling,
+      nonlinear analysis, and advanced structural applications.
+    </p>
 
+    <div class="carousel">
+      <div class="carousel-container">
+        <div class="carousel-slide"><img src="images/other1.png" alt=""></div>
+        <div class="carousel-slide"><img src="images/other2.png" alt=""></div>
+        <div class="carousel-slide"><img src="images/other3.png" alt=""></div>
+        <div class="carousel-slide"><img src="images/other4.png" alt=""></div>
+        <div class="carousel-slide"><img src="images/other5.png" alt=""></div>
+        <div class="carousel-slide"><img src="images/other6.png" alt=""></div>
+        <div class="carousel-slide"><img src="images/other7.png" alt=""></div>
+        <div class="carousel-slide"><img src="images/other8.jpg" alt=""></div>
+      </div>
+
+      <button class="prev" onclick="prevSlide()">&#10094;</button>
+      <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VENUE ================= -->
+<section class="venue-banner" id="venue">
+  <div class="venue-container">
+    <h2>VENUE</h2>
+    <p>
+      Universidad de Ingeniería y Tecnología (UTEC).
+      Modern facilities and advanced infrastructure for teaching and research.
+    </p>
+
+    <div class="venue-logos">
+      <img src="images/campus-utec.jpg" alt="Campus UTEC">
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORGANIZATION ================= -->
+<section class="organization-banner" id="organization">
+  <div class="organization-container">
+    <h2>ORGANIZATION</h2>
+    <p>
+      Organised by a multidisciplinary group of researchers associated with
+      academic and research institutions working in structural engineering and
+      computational mechanics.
+    </p>
+
+    <div class="organization-logos">
+      <img src="images/logo-utec.png" alt="UTEC">
+      <img src="images/logo-concytec.png" alt="CONCYTEC">
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
-<div class="container">
-<p>© Curso FEM – Simulación No Lineal</p>
-</div>
+  <div class="container">
+    <p>© Curso FEM – Simulación No Lineal</p>
+  </div>
 </footer>
 
+<!-- ================= JS CAROUSEL (CORREGIDO) ================= -->
+<script>
+const container = document.querySelector('.carousel-container');
+const slides = document.querySelectorAll('.carousel-slide');
+let currentIndex = 0;
+const visibleSlides = 4;
+const totalSlides = slides.length;
+
+function updateCarousel() {
+  const slideWidth = slides[0].clientWidth;
+  container.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+}
+
+function nextSlide() {
+  currentIndex = (currentIndex < totalSlides - visibleSlides)
+    ? currentIndex + 1
+    : 0;
+  updateCarousel();
+}
+
+function prevSlide() {
+  currentIndex = (currentIndex > 0)
+    ? currentIndex - 1
+    : totalSlides - visibleSlides;
+  updateCarousel();
+}
+
+setInterval(nextSlide, 10000);
+</script>
 
 </body>
 </html>
