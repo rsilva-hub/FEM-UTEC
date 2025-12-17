@@ -199,11 +199,11 @@ button.next { right: 10px; }
 }
 
 /* ===== LOGO UTEC PEQUEÑO (DEFINITIVO) ===== */
-.organization-logo {
+.organization-logos {
   width: auto;
 }
 
-.organization-logo img {
+.organization-logos img {
   height: 36px !important;      /* ajusta: 32px | 36px | 40px */
   width: auto !important;
   max-width: none !important;
