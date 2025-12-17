@@ -84,15 +84,15 @@ h2 {
 
 /* 🔴 OCULTAMOS EL TÍTULO */
 .brand-title {
-  display: none;
+  display: none !important;
 }
 
-/* ✅ LOGO PEQUEÑO */
+/* ✅ LOGO ~10% (MUY PEQUEÑO) */
 .brand::before {
   content: "";
   display: block;
-  width: 90px;              /* 🔧 tamaño controlado */
-  height: 90px;
+  width: 24px;              /* ~10% visual (antes estaba enorme) */
+  height: 24px;
   background: url("images/logo-simulacion.png") center / contain no-repeat;
 }
 
@@ -149,6 +149,7 @@ h2 {
     rgba(0,0,0,0.55) 75%,
     rgba(0,0,0,1) 100%
   );
+  pointer-events: none;
 }
 
 .overview-content {
@@ -249,6 +250,10 @@ h2 {
     text-align: center;
   }
 
+  .brand {
+    justify-content: center;
+  }
+
   .brand::before {
     margin: 0 auto;
   }
@@ -256,5 +261,6 @@ h2 {
   .main-nav {
     justify-content: center;
     flex-wrap: wrap;
+    white-space: normal;
   }
 }
