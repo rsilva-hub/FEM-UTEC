@@ -61,14 +61,15 @@ h2 {
    COURSE OVERVIEW HERO
    ========================= */
 .overview-hero {
-  min-height: 520px;
+  min-height: 80vh;       /* ocupa gran parte de la pantalla */
+  padding: 100px 20px;   /* más aire vertical */
   display: flex;
   align-items: center;
   justify-content: center;
 
   background:
     linear-gradient(
-      rgba(255,255,255,0.92),
+      rgba(255,255,255,0.95),
       rgba(220,235,250,0.85),
       rgba(0,0,0,0.85)
     ),
