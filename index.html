@@ -8,27 +8,32 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ===== HERO CON SVG FEM ===== */
+    /* ===== HERO CON IMAGEN FEM (GENERADA) ===== */
     .overview-hero {
+      position: relative;
       min-height: 520px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      overflow: hidden;
 
-      background:
-        linear-gradient(
-          rgba(255,255,255,0.92),
-          rgba(220,235,250,0.85),
-          rgba(0,0,0,0.85)
-        ),
-        url("images/overview-bg.svg");
+      /* ✅ imagen generada (ya tiene mirror + degradado a negro) */
+      background: url("images/overview-bg.png") center / cover no-repeat;
+    }
 
-      background-size: cover;
-      background-position: center;
+    /* Overlay muy suave SOLO para legibilidad */
+    .overview-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.10);
+      pointer-events: none;
     }
 
     .overview-content {
+      position: relative;
+      z-index: 1;
       max-width: 800px;
       padding: 0 20px;
     }
@@ -147,7 +152,7 @@
   </div>
 </header>
 
-<!-- ================= COURSE OVERVIEW (SVG HERO) ================= -->
+<!-- ================= COURSE OVERVIEW (HERO) ================= -->
 <section class="overview-hero" id="overview">
   <div class="overview-content">
     <h2>Course Overview</h2>
