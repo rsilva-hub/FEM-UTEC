@@ -1,10 +1,6 @@
-@@ -1,13 +1,17 @@
 /* =========================
    RESET
    ========================= */
-* { box-sizing: border-box; }
-
-html, body {
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,18 +15,19 @@ html, body {
 /* =========================
    BODY & CONTAINER
    ========================= */
-@@ -24,37 +28,30 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #000000;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
   padding: 40px 20px;
 }
 
-/* ✅ Evita líneas/blancos por márgenes entre secciones */
-section {
-  margin: 0 !important;
-  padding: 0;
-  display: block;
-}
-
-/* 🔴 Sin sombras en texto */
 /* =========================
    TEXT RESET
    ========================= */
@@ -39,8 +36,6 @@ p, span, a, li {
   text-shadow: none !important;
 }
 
-h1, h2, p { margin-top: 0; }
-
 h2 {
   border-bottom: 2px solid #2DA9E9;
   display: inline-block;
@@ -48,125 +43,113 @@ h2 {
 }
 
 /* =========================
-   HEADER TIPO SPSAS (2 NIVELES)
    HEADER (2 NIVELES)
    ========================= */
 .site-header {
   width: 100%;
 }
 
-/* Barra superior vino */
 /* ===== TOP BAR (NEGRA, CENTRADA) ===== */
 .topbar {
-  background: #7a0c0c;
   background: #000000;
   color: #ffffff;
 }
 
-@@ -63,27 +60,16 @@
+.topbar-inner {
+  max-width: 1100px;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  justify-content: center;   /* ✅ centrado */
+  justify-content: center;
   align-items: center;
   font-size: 12px;
 }
 
-.topbar-link {
-  color: #ffffff;
-  text-decoration: none;
 .topbar-inner span {
   opacity: 0.95;
 }
 
-.topbar-link:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-.topbar-sep {
-  opacity: 0.7;
-}
-
-/* Header blanco principal */
 /* ===== MAIN HEADER ===== */
 .mainbar {
   background: #ffffff;
   border-bottom: 3px solid #2DA9E9;
-@@ -93,46 +79,35 @@
+}
+
+.mainbar-inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 18px 20px;
-  display: flex;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
   gap: 40px;
 }
 
-/* Marca (logo + texto) */
-/* ===== TITLE ===== */
+/* ===== TITLE + LOGO (MODIFICADO PARA EL LOGO) ===== */
 .brand {
   display: flex;
+  justify-content: center;     /* mantiene centrado el bloque */
   align-items: center;
-  gap: 14px;
-  min-width: 320px;
+  gap: 18px;                   /* espacio entre logo y título */
 }
 
+/* ✅ Logo */
 .brand-logo {
-  height: 48px;
+  height: 70px;                /* ajusta a 60/80 según prefieras */
   width: auto;
   display: block;
-  justify-content: center;
 }
 
+/* ✅ Título */
 .brand-title {
-  margin: 0;
   max-width: 620px;
-  text-align: center;
+  text-align: left;            /* para que se vea natural junto al logo */
   font-size: 22px;
-  line-height: 1.2;
   line-height: 1.3;
   font-weight: 700;
   white-space: normal;
 }
 
-.brand-subtitle {
-  margin: 6px 0 0 0;
-  color: #2DA9E9;
-  font-size: 14px;
-}
-
-/* Navegación */
 /* ===== NAVIGATION (UNA SOLA LÍNEA) ===== */
 .main-nav {
   display: flex;
   align-items: center;
   gap: 22px;
-  flex-wrap: wrap;
   justify-content: flex-end;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
 
 .nav-link {
-@@ -150,7 +125,6 @@
+  color: #000000;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  color: #2DA9E9;
+}
 
 .nav-link.active {
   border-color: #d8d8d8;
-  background: #ffffff;
 }
 
 /* =========================
-@@ -166,10 +140,24 @@
+   COURSE OVERVIEW HERO
+   ========================= */
+.overview-hero {
+  position: relative;
+  min-height: 85vh;
+  padding: 120px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   overflow: hidden;
 
-  /* Imagen generada */
   background: url("images/overview-bg.png") center / cover no-repeat;
 }
 
@@ -188,131 +171,200 @@ h2 {
 .overview-content {
   position: relative;
   z-index: 1;
-@@ -187,19 +175,15 @@
+  max-width: 820px;
+  padding: 0 20px;
+}
+
+.overview-hero h2 {
+  color: #000000;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.overview-hero p {
   color: #222222;
   font-size: 17px;
   line-height: 1.65;
-  margin-bottom: 0;
 }
 
 /* =========================
-   LECTURERS BANNER
    LECTURERS
    ========================= */
 .lecturers-banner {
   background: #000000;
   color: #ffffff;
   padding: 70px 0;
-  text-align: left;
-
-  /* (opcional) elimina hairline gap */
   margin-top: -1px;
 }
 
-@@ -211,7 +195,6 @@
+.lecturers-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 .lecturers-banner h2 {
   color: #ffffff;
-  border-bottom: 2px solid #2DA9E9;
 }
 
 .lecturers-banner p {
-@@ -246,7 +229,6 @@
+  margin-top: 20px;
+}
+
+/* =========================
+   CAROUSEL
+   ========================= */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 10px;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
   background: #eeeeee;
 }
 
-/* Carousel buttons */
 button.prev,
 button.next {
   position: absolute;
-@@ -265,13 +247,12 @@
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #ffffff;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+button.prev { left: 10px; }
 button.next { right: 10px; }
 
 /* =========================
-   VENUE BANNER
    VENUE
    ========================= */
 .venue-banner {
   background: #ffffff;
   color: #000000;
   padding: 70px 0;
-  text-align: left;
 }
 
 .venue-container {
-@@ -280,15 +261,6 @@
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 0 20px;
-}
-
-.venue-banner h2 {
-  color: #000000;
-  border-bottom: 2px solid #2DA9E9;
-}
-
-.venue-banner p {
-  margin-top: 20px;
 }
 
 .venue-logos {
   margin-top: 30px;
 }
-@@ -302,13 +274,12 @@
+
+.venue-logos img {
+  width: 100%;
+  max-width: 900px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 14px;
 }
 
 /* =========================
-   ORGANIZATION BANNER
    ORGANIZATION
    ========================= */
 .organization-banner {
   background: #000000;
   color: #ffffff;
   padding: 70px 0;
-  text-align: left;
 }
 
 .organization-container {
-@@ -317,16 +288,6 @@
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 0 20px;
-}
-
-.organization-banner h2 {
-  color: #ffffff;
-  border-bottom: 2px solid #2DA9E9;
-}
-
-.organization-banner p {
-  margin-top: 20px;
-  line-height: 1.6;
 }
 
 .organization-logos {
   margin-top: 30px;
   display: flex;
-@@ -356,12 +317,14 @@
+  gap: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.organization-logos img {
+  height: 50px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer {
+  border-top: 1px solid #2DA9E9;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* =========================
+   RESPONSIVE
    ========================= */
 @media (max-width: 900px) {
   .mainbar-inner {
-    flex-direction: column;
-    align-items: flex-start;
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
   .main-nav {
-    justify-content: flex-start;
     justify-content: center;
     flex-wrap: wrap;
     white-space: normal;
   }
 
-  .brand-title {
-@@ -381,15 +344,11 @@
-    flex: 0 0 50%;
-    max-width: 50%;
+  /* En móvil: logo arriba y título centrado */
+  .brand {
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .organization-logos {
-    justify-content: center;
+  .brand-title {
+    font-size: 18px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .brand-logo {
+    height: 62px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-slide {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-slide {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 }
 
