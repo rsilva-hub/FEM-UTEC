@@ -207,8 +207,7 @@ button.next { right: 10px; }
 
 .organization-logos img {
   height: 50px;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* =========================
