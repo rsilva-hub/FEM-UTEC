@@ -175,13 +175,12 @@ button.next {
 }
 
 /* =========================
-   ORGANIZATION BANNER
+   ORGANIZATION
    ========================= */
 .organization-banner {
   background: #000000;
   color: #ffffff;
   padding: 70px 0;
-  text-align: left;
 }
 
 .organization-container {
@@ -193,12 +192,22 @@ button.next {
 .organization-banner h2 {
   color: #ffffff;
   border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 .organization-banner p {
-  margin-top: 20px;
+  max-width: 850px;
+  line-height: 1.6;
+  margin-bottom: 30px;
 }
 
-/* Logos organización */
-.orga
+/* LOGO PEQUEÑO COMO EN LA IMAGEN */
+.organization-logo img {
+  height: 40px;          /* tamaño pequeño */
+  width: auto;
+  filter: brightness(0) invert(1); /* blanco puro */
+  opacity: 0.95;
+}
 
