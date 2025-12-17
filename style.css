@@ -4,7 +4,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #FFFFFF;
+  background: #ffffff;
   color: #000000;
   line-height: 1.6;
 }
@@ -13,6 +13,16 @@ body {
   max-width: 1100px;
   margin: auto;
   padding: 40px 20px;
+}
+
+section {
+  margin-bottom: 50px;
+}
+
+h2 {
+  border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 /* =========================
@@ -48,24 +58,11 @@ body {
 }
 
 /* =========================
-   MAIN CONTENT
-   ========================= */
-section {
-  margin-bottom: 50px;
-}
-
-h2 {
-  border-bottom: 2px solid #2DA9E9;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-/* =========================
    LECTURERS BANNER
    ========================= */
 .lecturers-banner {
   background: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 70px 0;
   text-align: left;
 }
@@ -77,17 +74,16 @@ h2 {
 }
 
 .lecturers-banner h2 {
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid #2DA9E9;
 }
 
 .lecturers-banner p {
   margin-top: 20px;
-  line-height: 1.6;
 }
 
 /* =========================
-   LECTURERS CAROUSEL
+   CAROUSEL (SIN CAMBIOS)
    ========================= */
 .carousel {
   position: relative;
@@ -101,7 +97,7 @@ h2 {
 }
 
 .carousel-slide {
-  flex: 0 0 25%; /* 4 imágenes visibles en desktop */
+  flex: 0 0 25%;
   max-width: 25%;
   padding: 10px;
   box-sizing: border-box;
@@ -109,34 +105,40 @@ h2 {
 
 .carousel-slide img {
   width: 100%;
-  display: block;
+  height: 220px;
+  object-fit: cover;
   border-radius: 10px;
-  filter: brightness(0) invert(1); /* estilo similar a logos */
-  opacity: 0.9;
+  background: #eeeeee;
 }
 
-/* Botones de navegación */
-button.prev, button.next {
+/* Botones */
+button.prev,
+button.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.5);
-  color: #fff;
+  background: rgba(0,0,0,0.6);
+  color: #ffffff;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 14px;
   cursor: pointer;
   border-radius: 50%;
   z-index: 10;
 }
 
-button.prev { left: 10px; }
-button.next { right: 10px; }
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
 
 /* =========================
-   VENUE BANNER
+   VENUE (BLANCO)
    ========================= */
 .venue-banner {
-  background: #FFFFFF;
+  background: #ffffff;
   color: #000000;
   padding: 70px 0;
   text-align: left;
@@ -155,32 +157,29 @@ button.next { right: 10px; }
 
 .venue-banner p {
   margin-top: 20px;
-  line-height: 1.6;
 }
 
-/* =========================
-   venue LOGOS
-   ========================= */
+/* Imagen del campus */
 .venue-logos {
   margin-top: 30px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
 }
 
 .venue-logos img {
-  height: 50px;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  width: 100%;
+  max-width: 900px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 14px;
+  filter: none;
+  opacity: 1;
 }
-
 
 /* =========================
    ORGANIZATION BANNER
    ========================= */
 .organization-banner {
   background: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 70px 0;
   text-align: left;
 }
@@ -192,70 +191,14 @@ button.next { right: 10px; }
 }
 
 .organization-banner h2 {
-  color: #FFFFFF;
+  color: #ffffff;
   border-bottom: 2px solid #2DA9E9;
 }
 
 .organization-banner p {
   margin-top: 20px;
-  line-height: 1.6;
 }
 
-/* =========================
-   ORGANIZATION LOGOS
-   ========================= */
-.organization-logos {
-  margin-top: 30px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
+/* Logos organización */
+.orga
 
-.organization-logos img {
-  height: 50px;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
-}
-
-/* =========================
-   FOOTER
-   ========================= */
-.footer {
-  border-top: 1px solid #2DA9E9;
-  text-align: center;
-  font-size: 14px;
-  padding: 20px 0;
-}
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 1024px) {
-  .carousel-slide {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav a {
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .carousel-slide {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .organization-logos, .lecturers-logos {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-slide {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
