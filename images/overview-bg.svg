@@ -2,11 +2,11 @@
      xmlns="http://www.w3.org/2000/svg">
 
   <defs>
-    <!-- Degradado blanco -> celeste -> negro -->
+    <!-- Degradado blanco → celeste → negro -->
     <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="45%" stop-color="#eef6fc"/>
-      <stop offset="70%" stop-color="#dbeefb"/>
+      <stop offset="40%" stop-color="#eef6fc"/>
+      <stop offset="65%" stop-color="#cfe4f5"/>
       <stop offset="100%" stop-color="#000000"/>
     </linearGradient>
   </defs>
@@ -14,43 +14,90 @@
   <!-- Fondo -->
   <rect width="1600" height="900" fill="url(#bgGrad)"/>
 
-  <!-- Ondas tipo campo FEM -->
-  <g fill="none" stroke="#9bbfe0" stroke-width="1.2" opacity="0.55">
-    <path d="M-100 520 C 200 450, 500 620, 900 560 S 1500 480, 1700 560"/>
-    <path d="M-100 550 C 200 480, 500 650, 900 590 S 1500 510, 1700 590"/>
-    <path d="M-100 580 C 200 510, 500 680, 900 620 S 1500 540, 1700 620"/>
-    <path d="M-100 610 C 200 540, 500 710, 900 650 S 1500 570, 1700 650"/>
-    <path d="M-100 640 C 200 570, 500 740, 900 680 S 1500 600, 1700 680"/>
+  <!-- Ondas FEM suaves -->
+  <g fill="none" stroke="#9bbfe0" stroke-width="0.9" opacity="0.35">
+    <path d="M-100 520 C 300 430, 600 650, 1000 560 S 1500 480, 1700 560"/>
+    <path d="M-100 560 C 300 470, 600 690, 1000 600 S 1500 520, 1700 600"/>
+    <path d="M-100 600 C 300 510, 600 730, 1000 640 S 1500 560, 1700 640"/>
+    <path d="M-100 640 C 300 550, 600 770, 1000 680 S 1500 600, 1700 680"/>
+    <path d="M-100 680 C 300 590, 600 810, 1000 720 S 1500 640, 1700 720"/>
   </g>
 
-  <!-- Nodos FEM -->
-  <g fill="#86add0" opacity="0.55">
-    <!-- fila 1 -->
-    <circle cx="200" cy="540" r="2"/>
-    <circle cx="320" cy="560" r="2"/>
-    <circle cx="440" cy="550" r="2"/>
-    <circle cx="560" cy="580" r="2"/>
-    <circle cx="680" cy="570" r="2"/>
-    <circle cx="800" cy="590" r="2"/>
-    <circle cx="920" cy="575" r="2"/>
+  <!-- MALLA FEM TRIANGULAR (alta densidad) -->
+  <g stroke="#86add0" stroke-width="0.45" opacity="0.35" fill="none">
 
-    <!-- fila 2 -->
-    <circle cx="240" cy="590" r="2"/>
-    <circle cx="360" cy="610" r="2"/>
-    <circle cx="480" cy="600" r="2"/>
-    <circle cx="600" cy="630" r="2"/>
-    <circle cx="720" cy="620" r="2"/>
-    <circle cx="840" cy="640" r="2"/>
-    <circle cx="960" cy="625" r="2"/>
+    <!-- Generación tipo grid -->
+    <!-- filas -->
+    <!-- fila y = 580 -->
+    <polygon points="100,580 140,620 180,580"/>
+    <polygon points="140,620 180,660 220,620"/>
+    <polygon points="180,580 220,620 260,580"/>
+    <polygon points="220,620 260,660 300,620"/>
+    <polygon points="260,580 300,620 340,580"/>
+    <polygon points="300,620 340,660 380,620"/>
 
-    <!-- fila 3 -->
-    <circle cx="280" cy="640" r="2"/>
-    <circle cx="400" cy="660" r="2"/>
-    <circle cx="520" cy="650" r="2"/>
-    <circle cx="640" cy="680" r="2"/>
-    <circle cx="760" cy="670" r="2"/>
-    <circle cx="880" cy="690" r="2"/>
-    <circle cx="1000" cy="675" r="2"/>
+    <!-- fila y = 620 -->
+    <polygon points="380,600 420,640 460,600"/>
+    <polygon points="420,640 460,680 500,640"/>
+    <polygon points="460,600 500,640 540,600"/>
+    <polygon points="500,640 540,680 580,640"/>
+    <polygon points="540,600 580,640 620,600"/>
+    <polygon points="580,640 620,680 660,640"/>
+
+    <!-- fila y = 660 -->
+    <polygon points="660,620 700,660 740,620"/>
+    <polygon points="700,660 740,700 780,660"/>
+    <polygon points="740,620 780,660 820,620"/>
+    <polygon points="780,660 820,700 860,660"/>
+    <polygon points="820,620 860,660 900,620"/>
+    <polygon points="860,660 900,700 940,660"/>
+
+    <!-- fila y = 700 -->
+    <polygon points="940,640 980,680 1020,640"/>
+    <polygon points="980,680 1020,720 1060,680"/>
+    <polygon points="1020,640 1060,680 1100,640"/>
+    <polygon points="1060,680 1100,720 1140,680"/>
+    <polygon points="1100,640 1140,680 1180,640"/>
+    <polygon points="1140,680 1180,720 1220,680"/>
+
+    <!-- fila y = 740 -->
+    <polygon points="1220,660 1260,700 1300,660"/>
+    <polygon points="1260,700 1300,740 1340,700"/>
+    <polygon points="1300,660 1340,700 1380,660"/>
+    <polygon points="1340,700 1380,740 1420,700"/>
+    <polygon points="1380,660 1420,700 1460,660"/>
+  </g>
+
+  <!-- NODOS FEM -->
+  <g fill="#86add0" opacity="0.45">
+    <!-- nodos -->
+    <circle cx="100" cy="580" r="1.8"/>
+    <circle cx="140" cy="620" r="1.8"/>
+    <circle cx="180" cy="580" r="1.8"/>
+    <circle cx="220" cy="620" r="1.8"/>
+    <circle cx="260" cy="580" r="1.8"/>
+    <circle cx="300" cy="620" r="1.8"/>
+    <circle cx="340" cy="580" r="1.8"/>
+    <circle cx="380" cy="620" r="1.8"/>
+
+    <circle cx="460" cy="600" r="1.8"/>
+    <circle cx="500" cy="640" r="1.8"/>
+    <circle cx="540" cy="600" r="1.8"/>
+    <circle cx="580" cy="640" r="1.8"/>
+    <circle cx="620" cy="600" r="1.8"/>
+    <circle cx="660" cy="640" r="1.8"/>
+
+    <circle cx="740" cy="620" r="1.8"/>
+    <circle cx="780" cy="660" r="1.8"/>
+    <circle cx="820" cy="620" r="1.8"/>
+    <circle cx="860" cy="660" r="1.8"/>
+    <circle cx="900" cy="620" r="1.8"/>
+
+    <circle cx="980" cy="680" r="1.8"/>
+    <circle cx="1020" cy="640" r="1.8"/>
+    <circle cx="1060" cy="680" r="1.8"/>
+    <circle cx="1100" cy="640" r="1.8"/>
+    <circle cx="1140" cy="680" r="1.8"/>
   </g>
 
 </svg>
