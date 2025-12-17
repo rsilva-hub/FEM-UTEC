@@ -126,13 +126,8 @@ button.next {
   z-index: 10;
 }
 
-button.prev {
-  left: 10px;
-}
-
-button.next {
-  right: 10px;
-}
+button.prev { left: 10px; }
+button.next { right: 10px; }
 
 /* =========================
    VENUE (BLANCO)
@@ -159,7 +154,7 @@ button.next {
   margin-top: 20px;
 }
 
-/* Imagen del campus */
+/* Imagen campus UTEC */
 .venue-logos {
   margin-top: 30px;
 }
@@ -175,7 +170,7 @@ button.next {
 }
 
 /* =========================
-   ORGANIZATION
+   ORGANIZATION (NEGRO + LOGO PEQUEÑO)
    ========================= */
 .organization-banner {
   background: #000000;
@@ -203,11 +198,65 @@ button.next {
   margin-bottom: 30px;
 }
 
-/* LOGO PEQUEÑO COMO EN LA IMAGEN */
-.organization-logo img {
-  height: 40px;          /* tamaño pequeño */
+/* ===== LOGO UTEC PEQUEÑO (DEFINITIVO) ===== */
+.organization-logo {
   width: auto;
-  filter: brightness(0) invert(1); /* blanco puro */
+}
+
+.organization-logo img {
+  height: 36px !important;      /* ajusta: 32px | 36px | 40px */
+  width: auto !important;
+  max-width: none !important;
+  display: block;
+
+  filter: brightness(0) invert(1);
   opacity: 0.95;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer {
+  border-top: 1px solid #2DA9E9;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 1024px) {
+  .carousel-slide {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav a {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .organization-logo img {
+    height: 32px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .organization-logo img {
+    height: 28px !important;
+  }
 }
 
