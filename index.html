@@ -4,38 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Curso FEM y Simulación No Lineal</title>
-
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    /* ✅ Solo refuerzo final: fundir a negro puro para que coincida con LECTURERS */
-    .overview-hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.00) 0%,
-        rgba(255,255,255,0.00) 55%,
-        rgba(0,0,0,0.55) 75%,
-        rgba(0,0,0,1.00) 100%
-      );
-    }
-  </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER (TIPO SPSAS) ================= -->
+<!-- ================= HEADER ================= -->
 <header class="site-header">
 
-  <!-- Barra superior -->
+  <!-- Barra superior negra -->
   <div class="topbar">
     <div class="topbar-inner">
-      <a href="#" class="topbar-link">English</a>
-      <span class="topbar-sep">|</span>
-      <a href="#" class="topbar-link">Português</a>
+      <span>English | Español</span>
     </div>
   </div>
 
@@ -43,19 +23,14 @@
   <div class="mainbar">
     <div class="mainbar-inner">
 
+      <!-- Título centrado -->
       <div class="brand">
-        <!-- Cambia el logo si deseas -->
-        <img src="images/logo-utec.png" alt="Logo" class="brand-logo">
-
-        <div class="brand-text">
-          <h1 class="brand-title">
-            Fundamentos del Método de Elementos Finitos y
-            Simulación No Lineal de Estructuras Especiales
-          </h1>
-          <p class="brand-subtitle">Curso teórico-práctico</p>
-        </div>
+        <h1 class="brand-title">
+          Fundamentos del Método de Elementos Finitos y Simulación No Lineal de Estructuras Especiales
+        </h1>
       </div>
 
+      <!-- Menú en una sola línea -->
       <nav class="main-nav">
         <a href="#overview" class="nav-link active">Home</a>
         <a href="#lecturers" class="nav-link">Lecturers</a>
@@ -67,14 +42,14 @@
   </div>
 </header>
 
-<!-- ================= COURSE OVERVIEW (HERO) ================= -->
+<!-- ================= COURSE OVERVIEW ================= -->
 <section class="overview-hero" id="overview">
   <div class="overview-content">
     <h2>Course Overview</h2>
     <p>
-      Curso teórico-práctico orientado a los fundamentos del método de elementos
-      finitos y la simulación no lineal de estructuras especiales, con énfasis en
-      aplicaciones avanzadas en ingeniería estructural y mecánica computacional.
+      Curso orientado a los fundamentos del método de elementos finitos y la simulación
+      no lineal de estructuras especiales, con énfasis en aplicaciones avanzadas en
+      ingeniería estructural y mecánica computacional.
     </p>
   </div>
 </section>
@@ -140,12 +115,10 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <div class="container">
-    <p>© Curso FEM – Simulación No Lineal</p>
-  </div>
+  <p>© Curso FEM – Simulación No Lineal</p>
 </footer>
 
-<!-- ================= JS CAROUSEL (CORREGIDO) ================= -->
+<!-- ================= JS CAROUSEL ================= -->
 <script>
 const container = document.querySelector('.carousel-container');
 const slides = document.querySelectorAll('.carousel-slide');
@@ -177,3 +150,4 @@ setInterval(nextSlide, 10000);
 
 </body>
 </html>
+
