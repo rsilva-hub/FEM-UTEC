@@ -1,4 +1,4 @@
-/* =========================
+/* ========================= 
    BODY & CONTAINER
    ========================= */
 body {
@@ -17,6 +17,12 @@ body {
 
 section {
   margin-bottom: 50px;
+}
+
+/* 🔴 Asegura que NO haya sombra en ningún texto */
+h1, h2, h3, h4, h5, h6,
+p, span, a, li {
+  text-shadow: none !important;
 }
 
 h2 {
@@ -58,38 +64,52 @@ h2 {
 }
 
 /* =========================
-   COURSE OVERVIEW HERO  ✅ FIXED
+   COURSE OVERVIEW HERO
    ========================= */
 .overview-hero {
+  position: relative;              /* 🔧 necesario para SVG */
   min-height: 85vh;
   padding: 120px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
-  /* 🔴 CLAVE: solo el SVG, sin gradiente CSS */
-  background-image: url("images/overview-bg.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center bottom;
+  /* 🔧 degradado más suave para que se vean ondas y malla */
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.85),
+      rgba(220,235,250,0.75),
+      rgba(0,0,0,0.70)
+    );
+}
+
+/* 🔧 SVG como fondo REAL */
+.overview-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/overview-bg.svg") center / cover no-repeat;
+  z-index: 0;
 }
 
 .overview-content {
+  position: relative;
+  z-index: 1;
   text-align: center;
-  max-width: 800px;
-  background: rgba(255,255,255,0.75); /* mejora legibilidad */
-  padding: 40px;
-  border-radius: 14px;
+  max-width: 820px;
 }
 
 .overview-hero h2 {
   color: #000000;
+  font-size: 32px;
+  margin-bottom: 20px;
 }
 
 .overview-hero p {
   color: #222222;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.65;
 }
 
 /* =========================
@@ -287,4 +307,3 @@ button.next { right: 10px; }
     max-width: 100%;
   }
 }
-
