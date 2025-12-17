@@ -1,6 +1,10 @@
+@@ -1,13 +1,17 @@
 /* =========================
    RESET
    ========================= */
+* { box-sizing: border-box; }
+
+html, body {
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,15 +17,20 @@ html, body {
 }
 
 /* =========================
-   BODY
+   BODY & CONTAINER
    ========================= */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
-  color: #000000;
-  line-height: 1.6;
+@@ -24,37 +28,30 @@
+  padding: 40px 20px;
 }
 
+/* ✅ Evita líneas/blancos por márgenes entre secciones */
+section {
+  margin: 0 !important;
+  padding: 0;
+  display: block;
+}
+
+/* 🔴 Sin sombras en texto */
 /* =========================
    TEXT RESET
    ========================= */
@@ -30,6 +39,8 @@ p, span, a, li {
   text-shadow: none !important;
 }
 
+h1, h2, p { margin-top: 0; }
+
 h2 {
   border-bottom: 2px solid #2DA9E9;
   display: inline-block;
@@ -37,230 +48,277 @@ h2 {
 }
 
 /* =========================
+   HEADER TIPO SPSAS (2 NIVELES)
    HEADER (2 NIVELES)
    ========================= */
 .site-header {
   width: 100%;
 }
 
-/* ===== TOP BAR ===== */
+/* Barra superior vino */
+/* ===== TOP BAR (NEGRA, CENTRADA) ===== */
 .topbar {
+  background: #7a0c0c;
   background: #000000;
   color: #ffffff;
 }
 
-.topbar-inner {
-  max-width: 1100px;
+@@ -63,27 +60,16 @@
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  gap: 10px;
+  justify-content: center;   /* ✅ centrado */
+  align-items: center;
   font-size: 12px;
 }
 
+.topbar-link {
+  color: #ffffff;
+  text-decoration: none;
+.topbar-inner span {
+  opacity: 0.95;
+}
+
+.topbar-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.topbar-sep {
+  opacity: 0.7;
+}
+
+/* Header blanco principal */
 /* ===== MAIN HEADER ===== */
 .mainbar {
   background: #ffffff;
   border-bottom: 3px solid #2DA9E9;
-}
-
-.mainbar-inner {
+@@ -93,46 +79,35 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 18px 20px;
+  display: flex;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto;
   align-items: center;
+  justify-content: space-between;
+  gap: 30px;
   gap: 40px;
 }
 
-/* =========================
-   BRAND / LOGO
-   ========================= */
+/* Marca (logo + texto) */
+/* ===== TITLE ===== */
 .brand {
   display: flex;
   align-items: center;
+  gap: 14px;
+  min-width: 320px;
 }
 
-/* ❌ ocultamos cualquier logo grande */
-.brand img {
-  display: none !important;
-}
-
-/* ❌ ocultamos el título */
-.brand-title {
-  display: none;
-}
-
-/* ✅ LOGO AL ~10 % */
-.brand::before {
-  content: "";
+.brand-logo {
+  height: 48px;
+  width: auto;
   display: block;
-  width: 42px;        /* ≈10 % visual */
-  height: 42px;
-  background: url("images/logo-simulacion.png") center / contain no-repeat;
+  justify-content: center;
 }
 
-/* =========================
-   NAVIGATION
-   ========================= */
+.brand-title {
+  margin: 0;
+  max-width: 620px;
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.2;
+  line-height: 1.3;
+  font-weight: 700;
+  white-space: normal;
+}
+
+.brand-subtitle {
+  margin: 6px 0 0 0;
+  color: #2DA9E9;
+  font-size: 14px;
+}
+
+/* Navegación */
+/* ===== NAVIGATION (UNA SOLA LÍNEA) ===== */
 .main-nav {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
   gap: 22px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
   white-space: nowrap;
 }
 
 .nav-link {
-  color: #000000;
-  text-decoration: none;
-  font-size: 14px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid transparent;
-}
-
-.nav-link:hover {
-  color: #2DA9E9;
-}
+@@ -150,7 +125,6 @@
 
 .nav-link.active {
   border-color: #d8d8d8;
+  background: #ffffff;
 }
 
 /* =========================
-   COURSE OVERVIEW HERO
-   ========================= */
-.overview-hero {
-  position: relative;
-  min-height: 85vh;
-  padding: 120px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@@ -166,10 +140,24 @@
   text-align: center;
+  overflow: hidden;
+
+  /* Imagen generada */
   background: url("images/overview-bg.png") center / cover no-repeat;
 }
 
-/* Fundido a negro */
+/* ===== FUNDIDO A NEGRO PURO ===== */
 .overview-hero::after {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0) 55%,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,0.00) 55%,
     rgba(0,0,0,0.55) 75%,
-    rgba(0,0,0,1) 100%
+    rgba(0,0,0,1.00) 100%
   );
 }
 
 .overview-content {
   position: relative;
   z-index: 1;
-  max-width: 820px;
-}
-
-.overview-hero h2 {
-  font-size: 32px;
-}
-
-.overview-hero p {
+@@ -187,19 +175,15 @@
+  color: #222222;
   font-size: 17px;
+  line-height: 1.65;
+  margin-bottom: 0;
 }
 
 /* =========================
+   LECTURERS BANNER
    LECTURERS
    ========================= */
 .lecturers-banner {
-  background: #000;
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
   padding: 70px 0;
+  text-align: left;
+
+  /* (opcional) elimina hairline gap */
   margin-top: -1px;
 }
 
-/* =========================
-   CAROUSEL
-   ========================= */
-.carousel {
-  position: relative;
-  overflow: hidden;
-  margin-top: 30px;
+@@ -211,7 +195,6 @@
+
+.lecturers-banner h2 {
+  color: #ffffff;
+  border-bottom: 2px solid #2DA9E9;
 }
 
-.carousel-container {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+.lecturers-banner p {
+@@ -246,7 +229,6 @@
+  background: #eeeeee;
 }
 
-.carousel-slide {
-  flex: 0 0 25%;
-  padding: 10px;
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-}
+/* Carousel buttons */
+button.prev,
+button.next {
+  position: absolute;
+@@ -265,13 +247,12 @@
+button.next { right: 10px; }
 
 /* =========================
+   VENUE BANNER
    VENUE
    ========================= */
 .venue-banner {
   background: #ffffff;
+  color: #000000;
   padding: 70px 0;
+  text-align: left;
 }
 
-.venue-logos img {
-  width: 100%;
-  max-width: 900px;
-  height: 380px;
-  object-fit: cover;
-  border-radius: 14px;
+.venue-container {
+@@ -280,15 +261,6 @@
+  padding: 0 20px;
+}
+
+.venue-banner h2 {
+  color: #000000;
+  border-bottom: 2px solid #2DA9E9;
+}
+
+.venue-banner p {
+  margin-top: 20px;
+}
+
+.venue-logos {
+  margin-top: 30px;
+}
+@@ -302,13 +274,12 @@
 }
 
 /* =========================
+   ORGANIZATION BANNER
    ORGANIZATION
    ========================= */
 .organization-banner {
-  background: #000;
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
   padding: 70px 0;
+  text-align: left;
 }
 
-.organization-logos img {
-  height: 50px;
-  filter: brightness(0) invert(1);
+.organization-container {
+@@ -317,16 +288,6 @@
+  padding: 0 20px;
 }
 
-/* =========================
-   FOOTER
-   ========================= */
-.footer {
-  border-top: 1px solid #2DA9E9;
-  text-align: center;
-  padding: 20px 0;
+.organization-banner h2 {
+  color: #ffffff;
+  border-bottom: 2px solid #2DA9E9;
 }
 
-/* =========================
-   RESPONSIVE
+.organization-banner p {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.organization-logos {
+  margin-top: 30px;
+  display: flex;
+@@ -356,12 +317,14 @@
    ========================= */
 @media (max-width: 900px) {
   .mainbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
     grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .brand::before {
-    margin: 0 auto;
+    gap: 16px;
   }
 
   .main-nav {
+    justify-content: flex-start;
     justify-content: center;
     flex-wrap: wrap;
+    white-space: normal;
+  }
+
+  .brand-title {
+@@ -381,15 +344,11 @@
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .organization-logos {
+    justify-content: center;
   }
 }
 
+@media (max-width: 480px) {
+  .carousel-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
