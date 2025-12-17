@@ -244,7 +244,7 @@ button.next { right: 10px; }
     max-width: 50%;
   }
 
-  .organization-logo img {
+  .organization-logos img {
     height: 32px !important;
   }
 }
@@ -255,7 +255,7 @@ button.next { right: 10px; }
     max-width: 100%;
   }
 
-  .organization-logo img {
+  .organization-logos img {
     height: 28px !important;
   }
 }
