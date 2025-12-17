@@ -58,37 +58,28 @@ h2 {
 }
 
 /* =========================
-   COURSE OVERVIEW HERO
+   COURSE OVERVIEW HERO  ✅ FIXED
    ========================= */
 .overview-hero {
-  min-height: 85vh;                 /* FIX: más altura real */
-  padding: 120px 20px;              /* FIX: aire superior/inferior */
+  min-height: 85vh;
+  padding: 120px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* FIX: gradiente más suave + SVG visible */
-  background-image:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.85),
-      rgba(200,225,245,0.65),
-      rgba(0,0,0,0.75)
-    ),
-    url("images/overview-bg.svg");
-
-  background-repeat: no-repeat, no-repeat;
-
-  /* FIX: SVG no se deforma */
-  background-size: cover, contain;
-  background-position: center bottom, center bottom;
+  /* 🔴 CLAVE: solo el SVG, sin gradiente CSS */
+  background-image: url("images/overview-bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
 }
 
 .overview-content {
   text-align: center;
   max-width: 800px;
-  position: relative;               /* FIX: asegura visibilidad */
-  z-index: 2;
+  background: rgba(255,255,255,0.75); /* mejora legibilidad */
+  padding: 40px;
+  border-radius: 14px;
 }
 
 .overview-hero h2 {
@@ -288,10 +279,6 @@ button.next { right: 10px; }
   .organization-logos {
     justify-content: center;
   }
-
-  .overview-hero {
-    padding: 90px 20px; /* FIX mobile */
-  }
 }
 
 @media (max-width: 480px) {
@@ -300,5 +287,4 @@ button.next { right: 10px; }
     max-width: 100%;
   }
 }
-
 
