@@ -1,63 +1,291 @@
-/* BODY & BASE */
-margin-right: 20px;
-text-decoration: none;
-color: #000;
+/* =========================
+   BODY & CONTAINER
+   ========================= */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #000000;
+  line-height: 1.6;
 }
 
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
 
-.nav a:hover { color: #2DA9E9; }
+section {
+  margin-bottom: 50px;
+}
 
+h2 {
+  border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
+}
 
-/* OVERVIEW HERO */
+/* =========================
+   HEADER
+   ========================= */
+.header {
+  border-bottom: 3px solid #2DA9E9;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #2DA9E9;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
+.nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: #2DA9E9;
+}
+
+/* =========================
+   COURSE OVERVIEW HERO
+   ========================= */
 .overview-hero {
-min-height: 520px;
-display: flex;
-align-items: center;
-justify-content: center;
-background:
-linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
-url("images/overview-bg.svg");
-background-size: cover;
-background-position: center;
-}
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.92),
+      rgba(220,235,250,0.85),
+      rgba(0,0,0,0.85)
+    ),
+    url("images/overview-bg.svg");
+
+  background-size: cover;
+  background-position: center;
+}
 
 .overview-content {
-max-width: 800px;
-text-align: center;
+  text-align: center;
+  max-width: 800px;
 }
 
+.overview-hero h2 {
+  color: #000000;
+}
 
-/* LECTURERS */
+.overview-hero p {
+  color: #222222;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* =========================
+   LECTURERS BANNER
+   ========================= */
 .lecturers-banner {
-background: #000;
-color: #fff;
-padding: 70px 0;
+  background: #000000;
+  color: #ffffff;
+  padding: 70px 0;
+  text-align: left;
 }
 
+.lecturers-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
 
-/* ORGANIZATION */
+.lecturers-banner h2 {
+  color: #ffffff;
+  border-bottom: 2px solid #2DA9E9;
+}
+
+.lecturers-banner p {
+  margin-top: 20px;
+}
+
+/* =========================
+   CAROUSEL
+   ========================= */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #eeeeee;
+}
+
+/* Carousel buttons */
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #ffffff;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }
+
+/* =========================
+   VENUE BANNER
+   ========================= */
+.venue-banner {
+  background: #ffffff;
+  color: #000000;
+  padding: 70px 0;
+  text-align: left;
+}
+
+.venue-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.venue-banner h2 {
+  color: #000000;
+  border-bottom: 2px solid #2DA9E9;
+}
+
+.venue-banner p {
+  margin-top: 20px;
+}
+
+/* Venue image */
+.venue-logos {
+  margin-top: 30px;
+}
+
+.venue-logos img {
+  width: 100%;
+  max-width: 900px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* =========================
+   ORGANIZATION BANNER
+   ========================= */
 .organization-banner {
-background: #000;
-color: #fff;
-padding: 70px 0;
+  background: #000000;
+  color: #ffffff;
+  padding: 70px 0;
+  text-align: left;
 }
 
+.organization-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.organization-banner h2 {
+  color: #ffffff;
+  border-bottom: 2px solid #2DA9E9;
+}
+
+.organization-banner p {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* =========================
+   ORGANIZATION LOGOS
+   ========================= */
+.organization-logos {
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
 .organization-logos img {
-height: 50px;
-opacity: 0.95;
+  height: 50px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
-
-.organization-logos img.invert {
-filter: brightness(0) invert(1);
-}
-
-
-/* FOOTER */
+/* =========================
+   FOOTER
+   ========================= */
 .footer {
-border-top: 1px solid #2DA9E9;
-text-align: center;
-padding: 20px 0;
+  border-top: 1px solid #2DA9E9;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px 0;
 }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 1024px) {
+  .carousel-slide {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav a {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .organization-logos {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
