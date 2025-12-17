@@ -15,8 +15,9 @@ body {
   padding: 40px 20px;
 }
 
+/* ❗ IMPORTANTE: quitamos margen inferior global para evitar líneas blancas */
 section {
-  margin-bottom: 50px;
+  margin-bottom: 0;
 }
 
 /* 🔴 Asegura que NO haya sombra en ningún texto */
@@ -75,17 +76,24 @@ h2 {
   justify-content: center;
   overflow: hidden;
 
-  /* ✅ IMAGEN GENERADA (mirror + degradado a negro ya incluidos) */
+  /* Imagen FEM generada */
   background: url("images/overview-bg.png") center / cover no-repeat;
 }
 
-/* Overlay mínimo SOLO para asegurar legibilidad */
+/* 🔥 DEGRADADO FINAL A NEGRO (elimina franja blanca) */
 .overview-hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.06);
   pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,0.00) 55%,
+    rgba(0,0,0,0.45) 75%,
+    rgba(0,0,0,0.90) 100%
+  );
 }
 
 .overview-content {
