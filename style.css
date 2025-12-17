@@ -13,19 +13,13 @@ html, body {
 }
 
 /* =========================
-   BODY & CONTAINER
+   BODY
    ========================= */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #ffffff;
   color: #000000;
   line-height: 1.6;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 40px 20px;
 }
 
 /* =========================
@@ -49,7 +43,7 @@ h2 {
   width: 100%;
 }
 
-/* ===== TOP BAR (NEGRA, CENTRADA) ===== */
+/* ===== TOP BAR ===== */
 .topbar {
   background: #000000;
   color: #ffffff;
@@ -61,12 +55,7 @@ h2 {
   padding: 10px 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
   font-size: 12px;
-}
-
-.topbar-inner span {
-  opacity: 0.95;
 }
 
 /* ===== MAIN HEADER ===== */
@@ -80,43 +69,40 @@ h2 {
   margin: 0 auto;
   padding: 18px 20px;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: 40px;
 }
 
-/* ===== TITLE + LOGO (MODIFICADO PARA EL LOGO) ===== */
+/* =========================
+   BRAND / LOGO
+   ========================= */
 .brand {
   display: flex;
-  justify-content: center;     /* mantiene centrado el bloque */
   align-items: center;
-  gap: 18px;                   /* espacio entre logo y título */
 }
 
-/* ✅ Logo */
-.brand-logo {
-  height: 70px;                /* ajusta a 60/80 según prefieras */
-  width: auto;
-  display: block;
-}
-
-/* ✅ Título */
+/* 🔴 OCULTAMOS EL TÍTULO */
 .brand-title {
-  max-width: 620px;
-  text-align: left;            /* para que se vea natural junto al logo */
-  font-size: 22px;
-  line-height: 1.3;
-  font-weight: 700;
-  white-space: normal;
+  display: none;
 }
 
-/* ===== NAVIGATION (UNA SOLA LÍNEA) ===== */
+/* ✅ LOGO PEQUEÑO */
+.brand::before {
+  content: "";
+  display: block;
+  width: 90px;              /* 🔧 tamaño controlado */
+  height: 90px;
+  background: url("images/logo-simulacion.png") center / contain no-repeat;
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
 .main-nav {
   display: flex;
-  align-items: center;
-  gap: 22px;
   justify-content: flex-end;
-  flex-wrap: nowrap;
+  gap: 22px;
   white-space: nowrap;
 }
 
@@ -148,23 +134,20 @@ h2 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
-
   background: url("images/overview-bg.png") center / cover no-repeat;
 }
 
-/* ===== FUNDIDO A NEGRO PURO ===== */
+/* Fundido a negro */
 .overview-hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(255,255,255,0.00) 0%,
-    rgba(255,255,255,0.00) 55%,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0) 55%,
     rgba(0,0,0,0.55) 75%,
-    rgba(0,0,0,1.00) 100%
+    rgba(0,0,0,1) 100%
   );
 }
 
@@ -172,43 +155,24 @@ h2 {
   position: relative;
   z-index: 1;
   max-width: 820px;
-  padding: 0 20px;
 }
 
 .overview-hero h2 {
-  color: #000000;
   font-size: 32px;
-  margin-bottom: 20px;
 }
 
 .overview-hero p {
-  color: #222222;
   font-size: 17px;
-  line-height: 1.65;
 }
 
 /* =========================
    LECTURERS
    ========================= */
 .lecturers-banner {
-  background: #000000;
-  color: #ffffff;
+  background: #000;
+  color: #fff;
   padding: 70px 0;
   margin-top: -1px;
-}
-
-.lecturers-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.lecturers-banner h2 {
-  color: #ffffff;
-}
-
-.lecturers-banner p {
-  margin-top: 20px;
 }
 
 /* =========================
@@ -227,7 +191,6 @@ h2 {
 
 .carousel-slide {
   flex: 0 0 25%;
-  max-width: 25%;
   padding: 10px;
 }
 
@@ -236,43 +199,14 @@ h2 {
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
-  background: #eeeeee;
 }
-
-button.prev,
-button.next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.6);
-  color: #ffffff;
-  border: none;
-  padding: 10px 14px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 10;
-}
-
-button.prev { left: 10px; }
-button.next { right: 10px; }
 
 /* =========================
    VENUE
    ========================= */
 .venue-banner {
   background: #ffffff;
-  color: #000000;
   padding: 70px 0;
-}
-
-.venue-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.venue-logos {
-  margin-top: 30px;
 }
 
 .venue-logos img {
@@ -287,29 +221,14 @@ button.next { right: 10px; }
    ORGANIZATION
    ========================= */
 .organization-banner {
-  background: #000000;
-  color: #ffffff;
+  background: #000;
+  color: #fff;
   padding: 70px 0;
-}
-
-.organization-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.organization-logos {
-  margin-top: 30px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  align-items: center;
 }
 
 .organization-logos img {
   height: 50px;
   filter: brightness(0) invert(1);
-  opacity: 0.9;
 }
 
 /* =========================
@@ -318,7 +237,6 @@ button.next { right: 10px; }
 .footer {
   border-top: 1px solid #2DA9E9;
   text-align: center;
-  font-size: 14px;
   padding: 20px 0;
 }
 
@@ -328,49 +246,15 @@ button.next { right: 10px; }
 @media (max-width: 900px) {
   .mainbar-inner {
     grid-template-columns: 1fr;
-    gap: 16px;
+    text-align: center;
+  }
+
+  .brand::before {
+    margin: 0 auto;
   }
 
   .main-nav {
     justify-content: center;
     flex-wrap: wrap;
-    white-space: normal;
-  }
-
-  /* En móvil: logo arriba y título centrado */
-  .brand {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .brand-title {
-    font-size: 18px;
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .brand-logo {
-    height: 62px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .carousel-slide {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
-  }
-}
-
-@media (max-width: 768px) {
-  .carousel-slide {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-slide {
-    flex: 0 0 100%;
-    max-width: 100%;
   }
 }
