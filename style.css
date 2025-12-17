@@ -61,27 +61,34 @@ h2 {
    COURSE OVERVIEW HERO
    ========================= */
 .overview-hero {
-  min-height: 80vh;       /* ocupa gran parte de la pantalla */
-  padding: 100px 20px;   /* más aire vertical */
+  min-height: 85vh;                 /* FIX: más altura real */
+  padding: 120px 20px;              /* FIX: aire superior/inferior */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background:
+  /* FIX: gradiente más suave + SVG visible */
+  background-image:
     linear-gradient(
-      rgba(255,255,255,0.95),
-      rgba(220,235,250,0.85),
-      rgba(0,0,0,0.85)
+      to bottom,
+      rgba(255,255,255,0.85),
+      rgba(200,225,245,0.65),
+      rgba(0,0,0,0.75)
     ),
     url("images/overview-bg.svg");
 
-  background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat, no-repeat;
+
+  /* FIX: SVG no se deforma */
+  background-size: cover, contain;
+  background-position: center bottom, center bottom;
 }
 
 .overview-content {
   text-align: center;
   max-width: 800px;
+  position: relative;               /* FIX: asegura visibilidad */
+  z-index: 2;
 }
 
 .overview-hero h2 {
@@ -281,6 +288,10 @@ button.next { right: 10px; }
   .organization-logos {
     justify-content: center;
   }
+
+  .overview-hero {
+    padding: 90px 20px; /* FIX mobile */
+  }
 }
 
 @media (max-width: 480px) {
@@ -289,4 +300,5 @@ button.next { right: 10px; }
     max-width: 100%;
   }
 }
+
 
