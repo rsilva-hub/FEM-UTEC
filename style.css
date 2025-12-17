@@ -1,8 +1,17 @@
 /* ========================= 
+   RESET BÁSICO
+   ========================= */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ========================= 
    BODY & CONTAINER
    ========================= */
 body {
-  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #ffffff;
   color: #000000;
@@ -15,9 +24,11 @@ body {
   padding: 40px 20px;
 }
 
-/* ❗ IMPORTANTE: quitamos margen inferior global para evitar líneas blancas */
+/* ✅ CLAVE: elimina cualquier separación entre secciones */
 section {
-  margin-bottom: 0;
+  margin: 0 !important;
+  padding: 0;
+  display: block;
 }
 
 /* 🔴 Asegura que NO haya sombra en ningún texto */
@@ -26,11 +37,8 @@ p, span, a, li {
   text-shadow: none !important;
 }
 
-h2 {
-  border-bottom: 2px solid #2DA9E9;
-  display: inline-block;
-  padding-bottom: 5px;
-}
+/* (opcional) reduce márgenes default que a veces “empujan” visualmente */
+h1, h2, p { margin-top: 0; }
 
 /* =========================
    HEADER
@@ -78,9 +86,12 @@ h2 {
 
   /* Imagen FEM generada */
   background: url("images/overview-bg.png") center / cover no-repeat;
+
+  /* ✅ CLAVE: asegura que no deje hueco debajo */
+  margin: 0 !important;
 }
 
-/* 🔥 DEGRADADO FINAL A NEGRO (elimina franja blanca) */
+/* ✅ Degradado inferior a negro para fundir con LECTURERS */
 .overview-hero::after {
   content: "";
   position: absolute;
@@ -92,7 +103,7 @@ h2 {
     rgba(255,255,255,0.00) 0%,
     rgba(255,255,255,0.00) 55%,
     rgba(0,0,0,0.45) 75%,
-    rgba(0,0,0,0.90) 100%
+    rgba(0,0,0,0.95) 100%
   );
 }
 
@@ -104,6 +115,9 @@ h2 {
 }
 
 .overview-hero h2 {
+  border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
   color: #000000;
   font-size: 32px;
   margin-bottom: 20px;
@@ -123,6 +137,9 @@ h2 {
   color: #ffffff;
   padding: 70px 0;
   text-align: left;
+
+  /* ✅ CLAVE: evita huecos arriba/abajo */
+  margin: 0 !important;
 }
 
 .lecturers-container {
@@ -134,6 +151,8 @@ h2 {
 .lecturers-banner h2 {
   color: #ffffff;
   border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 .lecturers-banner p {
@@ -195,6 +214,7 @@ button.next { right: 10px; }
   color: #000000;
   padding: 70px 0;
   text-align: left;
+  margin: 0 !important;
 }
 
 .venue-container {
@@ -206,13 +226,14 @@ button.next { right: 10px; }
 .venue-banner h2 {
   color: #000000;
   border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 .venue-banner p {
   margin-top: 20px;
 }
 
-/* Venue image */
 .venue-logos {
   margin-top: 30px;
 }
@@ -233,6 +254,7 @@ button.next { right: 10px; }
   color: #ffffff;
   padding: 70px 0;
   text-align: left;
+  margin: 0 !important;
 }
 
 .organization-container {
@@ -244,6 +266,8 @@ button.next { right: 10px; }
 .organization-banner h2 {
   color: #ffffff;
   border-bottom: 2px solid #2DA9E9;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 .organization-banner p {
@@ -251,9 +275,6 @@ button.next { right: 10px; }
   line-height: 1.6;
 }
 
-/* =========================
-   ORGANIZATION LOGOS
-   ========================= */
 .organization-logos {
   margin-top: 30px;
   display: flex;
