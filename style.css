@@ -82,17 +82,22 @@ h2 {
   align-items: center;
 }
 
-/* 🔴 OCULTAMOS EL TÍTULO */
-.brand-title {
+/* ❌ ocultamos cualquier logo grande */
+.brand img {
   display: none !important;
 }
 
-/* ✅ LOGO ~10% (MUY PEQUEÑO) */
+/* ❌ ocultamos el título */
+.brand-title {
+  display: none;
+}
+
+/* ✅ LOGO AL ~10 % */
 .brand::before {
   content: "";
   display: block;
-  width: 24px;              /* ~10% visual (antes estaba enorme) */
-  height: 24px;
+  width: 42px;        /* ≈10 % visual */
+  height: 42px;
   background: url("images/logo-simulacion.png") center / contain no-repeat;
 }
 
@@ -149,7 +154,6 @@ h2 {
     rgba(0,0,0,0.55) 75%,
     rgba(0,0,0,1) 100%
   );
-  pointer-events: none;
 }
 
 .overview-content {
@@ -250,10 +254,6 @@ h2 {
     text-align: center;
   }
 
-  .brand {
-    justify-content: center;
-  }
-
   .brand::before {
     margin: 0 auto;
   }
@@ -261,6 +261,6 @@ h2 {
   .main-nav {
     justify-content: center;
     flex-wrap: wrap;
-    white-space: normal;
   }
 }
+
