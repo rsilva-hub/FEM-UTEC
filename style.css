@@ -184,6 +184,38 @@ h2 {
 }
 
 /* =========================
+   OVERVIEW – TEXT BLOCK (NUEVO)
+   ========================= */
+.overview-text-block {
+  background: #000000;
+  color: #ffffff;
+  padding: 80px 0;
+  margin-top: -1px;
+}
+
+.overview-text-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.overview-text-column h3 {
+  font-size: 18px;
+  margin-bottom: 18px;
+  color: #ffffff;
+}
+
+.overview-text-column p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  color: #e6e6e6;
+}
+
+/* =========================
    LECTURERS
    ========================= */
 .lecturers-banner {
@@ -399,6 +431,10 @@ button.next { right: 10px; }
   .brand-logo {
     height: 62px;
   }
+
+  .overview-text-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -421,6 +457,7 @@ button.next { right: 10px; }
     max-width: 100%;
   }
 }
+
 
 
 
