@@ -9,21 +9,15 @@
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header class="site-header">
-
-  <!-- Barra superior negra -->
   <div class="topbar">
     <div class="topbar-inner">
       <span>English | Español</span>
     </div>
   </div>
 
-  <!-- Header principal -->
   <div class="mainbar">
     <div class="mainbar-inner">
-
-      <!-- ✅ Logo + Título (centrado) -->
       <div class="brand">
         <img class="brand-logo" src="images/logo-simulacion.png" alt="Logo del curso">
         <h1 class="brand-title">
@@ -31,19 +25,16 @@
         </h1>
       </div>
 
-      <!-- Menú en una sola línea -->
       <nav class="main-nav">
         <a href="#overview" class="nav-link active">Home</a>
         <a href="#lecturers" class="nav-link">Lecturers</a>
         <a href="#venue" class="nav-link">Venue</a>
         <a href="#organization" class="nav-link">Organization</a>
       </nav>
-
     </div>
   </div>
 </header>
 
-<!-- ================= COURSE OVERVIEW ================= -->
 <section class="overview-hero" id="overview">
   <div class="overview-content">
     <h2>Course Overview</h2>
@@ -66,14 +57,87 @@
 
     <div class="carousel">
       <div class="carousel-container">
-        <div class="carousel-slide"><img src="images/other1.png" alt=""></div>
-        <div class="carousel-slide"><img src="images/other2.png" alt=""></div>
-        <div class="carousel-slide"><img src="images/other3.png" alt=""></div>
-        <div class="carousel-slide"><img src="images/other4.png" alt=""></div>
-        <div class="carousel-slide"><img src="images/other5.png" alt=""></div>
-        <div class="carousel-slide"><img src="images/other6.png" alt=""></div>
-        <div class="carousel-slide"><img src="images/other7.png" alt=""></div>
-        <div class="carousel-slide"><img src="images/other8.jpg" alt=""></div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other1.png" alt="Carlos Benedetty Torres">
+            <div class="profile-info">
+              <h3>CARLOS BENEDETTY TORRES</h3>
+              <p>PhD. en Ingeniería Estructural<br>UNICAMP – Brasil</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other2.png" alt="Carlos Humberto Martins">
+            <div class="profile-info">
+              <h3>CARLOS HUMBERTO MARTINS</h3>
+              <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other3.png" alt="Pablo Augusto Krahl">
+            <div class="profile-info">
+              <h3>PABLO AUGUSTO KRAHL</h3>
+              <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other4.png" alt="Paula de Oliveira Ribeiro">
+            <div class="profile-info">
+              <h3>PAULA DE OLIVEIRA RIBEIRO</h3>
+              <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other5.png" alt="Carlos Roberto Parejo">
+            <div class="profile-info">
+              <h3>CARLOS ROBERTO PAREJO</h3>
+              <p>MBA – FGV EAESP<br>Director EDC Tecnología</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other6.png" alt="Elvis Yuri Mamani Vargas">
+            <div class="profile-info">
+              <h3>ELVIS YURI MAMANI VARGAS</h3>
+              <p>Doctor en Ingeniería Civil<br>PUC-Rio – Brasil</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other7.png" alt="Jonathan Alfredo Tapullima Montejo">
+            <div class="profile-info">
+              <h3>JONATHAN A. TAPULLIMA MONTEJO</h3>
+              <p>PhD. en Ingeniería Aeroespacial<br>Corea del Sur</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="profile-card">
+            <img src="images/other8.jpg" alt="Vinicius Moura de Oliveira">
+            <div class="profile-info">
+              <h3>VINICIUS MOURA DE OLIVEIRA</h3>
+              <p>PhD. en Ingeniería Civil<br>UFSCar – Brasil</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <button class="prev" onclick="prevSlide()">&#10094;</button>
@@ -82,31 +146,20 @@
   </div>
 </section>
 
-<!-- ================= VENUE ================= -->
 <section class="venue-banner" id="venue">
   <div class="venue-container">
     <h2>VENUE</h2>
-    <p>
-      Universidad de Ingeniería y Tecnología (UTEC).
-      Modern facilities and advanced infrastructure for teaching and research.
-    </p>
-
+    <p>Universidad de Ingeniería y Tecnología (UTEC).</p>
     <div class="venue-logos">
       <img src="images/campus-utec.jpg" alt="Campus UTEC">
     </div>
   </div>
 </section>
 
-<!-- ================= ORGANIZATION ================= -->
 <section class="organization-banner" id="organization">
   <div class="organization-container">
     <h2>ORGANIZATION</h2>
-    <p>
-      Organised by a multidisciplinary group of researchers associated with
-      academic and research institutions working in structural engineering and
-      computational mechanics.
-    </p>
-
+    <p>Organised by a multidisciplinary group of researchers.</p>
     <div class="organization-logos">
       <img src="images/logo-utec.png" alt="UTEC">
       <img src="images/logo-concytec.png" alt="CONCYTEC">
@@ -115,12 +168,10 @@
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <p>© Curso FEM – Simulación No Lineal</p>
 </footer>
 
-<!-- ================= JS CAROUSEL ================= -->
 <script>
 const container = document.querySelector('.carousel-container');
 const slides = document.querySelectorAll('.carousel-slide');
@@ -134,16 +185,12 @@ function updateCarousel() {
 }
 
 function nextSlide() {
-  currentIndex = (currentIndex < totalSlides - visibleSlides)
-    ? currentIndex + 1
-    : 0;
+  currentIndex = (currentIndex < totalSlides - visibleSlides) ? currentIndex + 1 : 0;
   updateCarousel();
 }
 
 function prevSlide() {
-  currentIndex = (currentIndex > 0)
-    ? currentIndex - 1
-    : totalSlides - visibleSlides;
+  currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - visibleSlides;
   updateCarousel();
 }
 
