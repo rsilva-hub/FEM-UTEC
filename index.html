@@ -46,7 +46,6 @@
   </div>
 </section>
 
-<!-- ================= BLOQUE 3 COLUMNAS ================= -->
 <section class="overview-text-block">
   <div class="overview-text-container">
 
@@ -102,7 +101,6 @@
   </div>
 </section>
 
-<!-- ================= LECTURERS ================= -->
 <section class="lecturers-banner" id="lecturers">
   <div class="lecturers-container">
     <h2>LECTURERS</h2>
@@ -116,7 +114,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other1.png" alt="Carlos Benedetty Torres">
+            <img src="images/other1.png" alt="Carlos Benedetty Torres" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>CARLOS BENEDETTY TORRES</h3>
               <p>PhD. en Ingeniería Estructural<br>UNICAMP – Brasil</p>
@@ -126,7 +124,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other2.png" alt="Carlos Humberto Martins">
+            <img src="images/other2.png" alt="Carlos Humberto Martins" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>CARLOS HUMBERTO MARTINS</h3>
               <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
@@ -136,7 +134,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other3.png" alt="Pablo Augusto Krahl">
+            <img src="images/other3.png" alt="Pablo Augusto Krahl" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>PABLO AUGUSTO KRAHL</h3>
               <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
@@ -146,7 +144,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other4.png" alt="Paula de Oliveira Ribeiro">
+            <img src="images/other4.png" alt="Paula de Oliveira Ribeiro" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>PAULA DE OLIVEIRA RIBEIRO</h3>
               <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
@@ -156,7 +154,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other5.png" alt="Carlos Roberto Parejo">
+            <img src="images/other5.png" alt="Carlos Roberto Parejo" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>CARLOS ROBERTO PAREJO</h3>
               <p>MBA – FGV EAESP<br>Director EDC Tecnología</p>
@@ -166,7 +164,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other6.png" alt="Elvis Yuri Mamani Vargas">
+            <img src="images/other6.png" alt="Elvis Yuri Mamani Vargas" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>ELVIS YURI MAMANI VARGAS</h3>
               <p>Doctor en Ingeniería Civil<br>PUC-Rio – Brasil</p>
@@ -176,7 +174,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other7.png" alt="Jonathan Alfredo Tapullima Montejo">
+            <img src="images/other7.png" alt="Jonathan Alfredo Tapullima Montejo" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>JONATHAN A. TAPULLIMA MONTEJO</h3>
               <p>PhD. en Ingeniería Aeroespacial<br>GNU - Corea del Sur</p>
@@ -186,7 +184,7 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other8.jpg" alt="Vinicius Moura de Oliveira">
+            <img src="images/other8.jpg" alt="Vinicius Moura de Oliveira" loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>VINICIUS MOURA DE OLIVEIRA</h3>
               <p>PhD. en Ingeniería Civil<br>UFSCar – Brasil</p>
@@ -244,136 +242,77 @@ const counter = document.querySelector('.carousel-counter');
 const dotsContainer = document.querySelector('.carousel-dots');
 let dots = [];
 
-/* ✅ CLONAR AL FINAL para rellenar, y permitir el paso 8/8 -> (clon) 1/8 sin huecos */
 (function appendTailClones() {
   const clonesNeeded = Math.max(0, visibleSlides - 1);
   for (let i = 0; i < clonesNeeded; i++) {
     const clone = originalSlides[i].cloneNode(true);
-    clone.classList.add('is-clone');
     container.appendChild(clone);
   }
 })();
-
-function getAllSlides() {
-  return container.querySelectorAll('.carousel-slide');
-}
 
 function normIndex(i) {
   return ((i % totalSlides) + totalSlides) % totalSlides;
 }
 
 function createDots() {
-  if (!dotsContainer) return;
-
   dotsContainer.innerHTML = '';
   dots = [];
-
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('span');
-    dot.addEventListener('click', () => {
-      focusIndex = i;
-      updateCarousel();
-    });
+    dot.onclick = () => { focusIndex = i; updateCarousel(); };
     dotsContainer.appendChild(dot);
     dots.push(dot);
   }
 }
 
-function updateCounter() {
-  if (!counter) return;
-  counter.textContent = `${normIndex(focusIndex) + 1} / ${totalSlides}`;
-}
-
-function updateDots() {
-  if (!dots.length) return;
-  dots.forEach(d => d.classList.remove('active'));
-  const idx = normIndex(focusIndex);
-  if (dots[idx]) dots[idx].classList.add('active');
-}
-
 function updateCarousel() {
-  const slides = getAllSlides();
-  if (!slides.length) return;
-
-  const slideWidth = slides[0].clientWidth;
+  const slideWidth = container.querySelector('.carousel-slide').clientWidth;
   container.style.transform = `translateX(-${focusIndex * slideWidth}px)`;
-
-  updateCounter();
-  updateDots();
+  counter.textContent = `${normIndex(focusIndex) + 1} / ${totalSlides}`;
+  dots.forEach(d => d.classList.remove('active'));
+  dots[normIndex(focusIndex)].classList.add('active');
 }
 
-/* ✅ Evitar doble click mientras anima */
 let isAnimating = false;
 
-/*
-  ✅ AVANCE SIN “RETROCEDER TODO”:
-  - Del 8/8 avanzamos al índice 8 (que muestra el clon del 1).
-  - Al terminar la transición, reseteamos a 0 SIN transición (salto invisible).
-*/
 function nextSlide() {
   if (isAnimating) return;
   isAnimating = true;
 
-  // si estamos en el último real, avanzamos al "extra" (clon del 1)
   if (focusIndex === totalSlides - 1) {
-    focusIndex = totalSlides;       // muestra el clon del primero
+    focusIndex = totalSlides;
     updateCarousel();
 
-    const onEnd = (e) => {
+    container.addEventListener('transitionend', function reset(e) {
       if (e.propertyName !== 'transform') return;
-      container.removeEventListener('transitionend', onEnd);
-
-      // reset silencioso al primero real
+      container.removeEventListener('transitionend', reset);
       container.style.transition = 'none';
       focusIndex = 0;
       updateCarousel();
-
-      // forzar reflow para que el navegador aplique el "none"
       container.offsetHeight;
-
-      // restaurar transición
       container.style.transition = 'transform 0.5s ease-in-out';
       isAnimating = false;
-    };
-
-    container.addEventListener('transitionend', onEnd);
-    return;
+    });
+  } else {
+    focusIndex++;
+    updateCarousel();
+    container.addEventListener('transitionend', () => isAnimating = false, { once: true });
   }
-
-  // avance normal
-  focusIndex += 1;
-  updateCarousel();
-
-  const onEndNormal = (e) => {
-    if (e.propertyName !== 'transform') return;
-    container.removeEventListener('transitionend', onEndNormal);
-    isAnimating = false;
-  };
-  container.addEventListener('transitionend', onEndNormal);
 }
 
 function prevSlide() {
   if (isAnimating) return;
   isAnimating = true;
-
-  // retroceso normal (mantengo tu loop actual sin tocar más)
   focusIndex = (focusIndex - 1 + totalSlides) % totalSlides;
   updateCarousel();
-
-  const onEndNormal = (e) => {
-    if (e.propertyName !== 'transform') return;
-    container.removeEventListener('transitionend', onEndNormal);
-    isAnimating = false;
-  };
-  container.addEventListener('transitionend', onEndNormal);
+  container.addEventListener('transitionend', () => isAnimating = false, { once: true });
 }
 
 createDots();
 updateCarousel();
-
-setInterval(nextSlide, 10000);
 window.addEventListener('resize', updateCarousel);
 </script>
 
 </body>
 </html>
+
