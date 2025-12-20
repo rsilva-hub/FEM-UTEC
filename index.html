@@ -241,7 +241,7 @@
 </footer>
 
 <script>
-/* --- JS DEL CARRUSEL (ajustes: loop perfecto en prev/next) --- */
+/* --- JS DEL CARRUSEL (solo cambios internos del carrusel) --- */
 const container = document.querySelector('.carousel-container');
 const originalSlides = Array.from(document.querySelectorAll('.carousel-slide'));
 
@@ -252,40 +252,32 @@ const counter = document.querySelector('.carousel-counter');
 const dotsContainer = document.querySelector('.carousel-dots');
 let dots = [];
 
-/*
-  Loop infinito SUAVE en ambos sentidos:
-  - Se clonan (visibleSlides - 1) slides al INICIO (los últimos) y al FINAL (los primeros).
-  - focusIndex arranca después de los clones iniciales.
-  - Al llegar a la zona de clones, se hace un reset silencioso (sin transición).
-*/
-const headClones = Math.max(0, visibleSlides - 1);
-const tailClones = Math.max(0, visibleSlides - 1);
+/* ✅ Clones al inicio y al final para loop suave en ambos sentidos */
+const clonesCount = Math.max(0, visibleSlides - 1);
 
-(function buildInfiniteTrack() {
-  // Clones al inicio: últimos N
-  for (let i = totalSlides - headClones; i < totalSlides; i++) {
+(function buildClones() {
+  // clones al INICIO: últimos N
+  for (let i = totalSlides - clonesCount; i < totalSlides; i++) {
     if (i < 0) continue;
     const clone = originalSlides[i].cloneNode(true);
     clone.classList.add('is-clone');
     container.insertBefore(clone, container.firstChild);
   }
-
-  // Clones al final: primeros N
-  for (let i = 0; i < tailClones; i++) {
+  // clones al FINAL: primeros N
+  for (let i = 0; i < clonesCount; i++) {
     const clone = originalSlides[i].cloneNode(true);
     clone.classList.add('is-clone');
     container.appendChild(clone);
   }
 })();
 
-let focusIndex = headClones;
-
-function normIndex(i) {
-  return ((i % totalSlides) + totalSlides) % totalSlides;
-}
+/* índice de track (incluye clones) */
+let focusIndex = clonesCount;
 
 function realIndex() {
-  return normIndex(focusIndex - headClones);
+  // índice lógico (0..totalSlides-1)
+  const idx = focusIndex - clonesCount;
+  return ((idx % totalSlides) + totalSlides) % totalSlides;
 }
 
 function createDots() {
@@ -297,7 +289,7 @@ function createDots() {
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('span');
     dot.addEventListener('click', () => {
-      focusIndex = headClones + i;
+      focusIndex = clonesCount + i;
       updateCarousel();
     });
     dotsContainer.appendChild(dot);
@@ -305,37 +297,33 @@ function createDots() {
   }
 }
 
-function updateCounter() {
-  if (!counter) return;
-  counter.textContent = `${realIndex() + 1} / ${totalSlides}`;
-}
-
-function updateDots() {
-  if (!dots.length) return;
-  dots.forEach(d => d.classList.remove('active'));
-  const idx = realIndex();
-  if (dots[idx]) dots[idx].classList.add('active');
-}
-
 function updateCarousel() {
-  const anySlide = container.querySelector('.carousel-slide');
-  if (!anySlide) return;
+  const slide = container.querySelector('.carousel-slide');
+  if (!slide) return;
 
-  const slideWidth = anySlide.clientWidth;
+  const slideWidth = slide.clientWidth;
   container.style.transform = `translateX(-${focusIndex * slideWidth}px)`;
 
-  updateCounter();
-  updateDots();
+  // counter y dots (lógicos)
+  if (counter) counter.textContent = `${realIndex() + 1} / ${totalSlides}`;
+  if (dots.length) {
+    dots.forEach(d => d.classList.remove('active'));
+    const idx = realIndex();
+    if (dots[idx]) dots[idx].classList.add('active');
+  }
 }
 
-/* Evitar doble click mientras anima */
+/* ✅ Evitar doble click mientras anima */
 let isAnimating = false;
 
-function silentJumpTo(newIndex) {
+function silentJumpTo(newFocusIndex) {
   container.style.transition = 'none';
-  focusIndex = newIndex;
+  focusIndex = newFocusIndex;
   updateCarousel();
+
+  // forzar reflow para aplicar el transition none
   container.offsetHeight;
+
   container.style.transition = 'transform 0.5s ease-in-out';
 }
 
@@ -350,10 +338,9 @@ function nextSlide() {
     if (e.propertyName !== 'transform') return;
     container.removeEventListener('transitionend', onEnd);
 
-    // Si llegamos al primer clon del inicio (zona final)
-    if (focusIndex === headClones + totalSlides) {
-      // volver al primero real (después de clones iniciales)
-      silentJumpTo(headClones);
+    // Si entramos en la zona de clones del FINAL, saltamos al primero real (sin efecto visual)
+    if (focusIndex === clonesCount + totalSlides) {
+      silentJumpTo(clonesCount);
     }
 
     isAnimating = false;
@@ -373,10 +360,9 @@ function prevSlide() {
     if (e.propertyName !== 'transform') return;
     container.removeEventListener('transitionend', onEnd);
 
-    // Si entramos a la zona de clones del inicio (antes del primer real)
+    // Si entramos en la zona de clones del INICIO, saltamos al último real (sin efecto visual)
     if (focusIndex === 0) {
-      // saltar al último real (antes de los clones finales)
-      silentJumpTo(headClones + totalSlides - 1);
+      silentJumpTo(clonesCount + totalSlides - 1);
     }
 
     isAnimating = false;
