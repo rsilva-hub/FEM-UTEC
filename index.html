@@ -179,7 +179,7 @@
             <img src="images/other7.png" alt="Jonathan Alfredo Tapullima Montejo">
             <div class="profile-info">
               <h3>JONATHAN A. TAPULLIMA MONTEJO</h3>
-              <p>PhD. en Ingeniería Aeroespacial<br>Corea del Sur</p>
+              <p>PhD. en Ingeniería Aeroespacial<br>GNU - Corea del Sur</p>
             </div>
           </div>
         </div>
@@ -199,6 +199,10 @@
       <button class="prev" onclick="prevSlide()">&#10094;</button>
       <button class="next" onclick="nextSlide()">&#10095;</button>
     </div>
+
+    <!-- ✅ NUEVO: contador debajo del carrusel -->
+    <p class="carousel-counter"></p>
+
   </div>
 </section>
 
@@ -235,9 +239,18 @@ let currentIndex = 0;
 const visibleSlides = 4;
 const totalSlides = slides.length;
 
+/* ✅ NUEVO: contador */
+const counter = document.querySelector('.carousel-counter');
+
+function updateCounter() {
+  if (!counter) return;
+  counter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+}
+
 function updateCarousel() {
   const slideWidth = slides[0].clientWidth;
   container.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  updateCounter();
 }
 
 function nextSlide() {
@@ -251,8 +264,10 @@ function prevSlide() {
 }
 
 setInterval(nextSlide, 10000);
+
+/* ✅ inicializa contador */
+updateCounter();
 </script>
 
 </body>
 </html>
-
