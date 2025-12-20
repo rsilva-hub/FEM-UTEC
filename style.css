@@ -485,3 +485,27 @@ button.next { right: 10px; }
     max-width: 100%;
   }
 }
+
+/* =========================
+   CAROUSEL – BARRA DE PAGINACIÓN
+   ========================= */
+.carousel-dots {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-dots span {
+  width: 10px;
+  height: 10px;
+  background: #4d4d4d;
+  border-radius: 2px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-dots span.active {
+  background: #ffffff;
+}
