@@ -46,6 +46,7 @@
   </div>
 </section>
 
+<!-- ================= BLOQUE 3 COLUMNAS ================= -->
 <section class="overview-text-block">
   <div class="overview-text-container">
 
@@ -101,6 +102,7 @@
   </div>
 </section>
 
+<!-- ================= LECTURERS ================= -->
 <section class="lecturers-banner" id="lecturers">
   <div class="lecturers-container">
     <h2>LECTURERS</h2>
@@ -112,7 +114,6 @@
     <div class="carousel">
       <div class="carousel-container">
 
-        <!-- 🔽 fetchpriority="high" SOLO en las primeras 4 -->
         <div class="carousel-slide">
           <div class="profile-card">
             <img src="images/other1.png" alt="Carlos Benedetty Torres"
@@ -157,10 +158,10 @@
           </div>
         </div>
 
-        <!-- 🔽 resto igual -->
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other5.png" alt="Carlos Roberto Parejo" loading="eager" decoding="sync">
+            <img src="images/other5.png" alt="Carlos Roberto Parejo"
+                 loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>CARLOS ROBERTO PAREJO</h3>
               <p>MBA – FGV EAESP<br>Director EDC Tecnología</p>
@@ -170,7 +171,8 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other6.png" alt="Elvis Yuri Mamani Vargas" loading="eager" decoding="sync">
+            <img src="images/other6.png" alt="Elvis Yuri Mamani Vargas"
+                 loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>ELVIS YURI MAMANI VARGAS</h3>
               <p>Doctor en Ingeniería Civil<br>PUC-Rio – Brasil</p>
@@ -180,7 +182,8 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other7.png" alt="Jonathan Alfredo Tapullima Montejo" loading="eager" decoding="sync">
+            <img src="images/other7.png" alt="Jonathan Alfredo Tapullima Montejo"
+                 loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>JONATHAN A. TAPULLIMA MONTEJO</h3>
               <p>PhD. en Ingeniería Aeroespacial<br>GNU - Corea del Sur</p>
@@ -190,7 +193,8 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other8.jpg" alt="Vinicius Moura de Oliveira" loading="eager" decoding="sync">
+            <img src="images/other8.jpg" alt="Vinicius Moura de Oliveira"
+                 loading="eager" decoding="sync">
             <div class="profile-info">
               <h3>VINICIUS MOURA DE OLIVEIRA</h3>
               <p>PhD. en Ingeniería Civil<br>UFSCar – Brasil</p>
@@ -237,11 +241,10 @@
 </footer>
 
 <script>
-/* --- JS DEL CARRUSEL (SIN CAMBIOS) --- */
+/* --- JS DEL CARRUSEL (ajustes: loop perfecto en prev/next) --- */
 const container = document.querySelector('.carousel-container');
 const originalSlides = Array.from(document.querySelectorAll('.carousel-slide'));
 
-let focusIndex = 0;
 const visibleSlides = 4;
 const totalSlides = originalSlides.length;
 
@@ -249,70 +252,137 @@ const counter = document.querySelector('.carousel-counter');
 const dotsContainer = document.querySelector('.carousel-dots');
 let dots = [];
 
-(function appendTailClones() {
-  const clonesNeeded = Math.max(0, visibleSlides - 1);
-  for (let i = 0; i < clonesNeeded; i++) {
+/*
+  Loop infinito SUAVE en ambos sentidos:
+  - Se clonan (visibleSlides - 1) slides al INICIO (los últimos) y al FINAL (los primeros).
+  - focusIndex arranca después de los clones iniciales.
+  - Al llegar a la zona de clones, se hace un reset silencioso (sin transición).
+*/
+const headClones = Math.max(0, visibleSlides - 1);
+const tailClones = Math.max(0, visibleSlides - 1);
+
+(function buildInfiniteTrack() {
+  // Clones al inicio: últimos N
+  for (let i = totalSlides - headClones; i < totalSlides; i++) {
+    if (i < 0) continue;
     const clone = originalSlides[i].cloneNode(true);
+    clone.classList.add('is-clone');
+    container.insertBefore(clone, container.firstChild);
+  }
+
+  // Clones al final: primeros N
+  for (let i = 0; i < tailClones; i++) {
+    const clone = originalSlides[i].cloneNode(true);
+    clone.classList.add('is-clone');
     container.appendChild(clone);
   }
 })();
+
+let focusIndex = headClones;
 
 function normIndex(i) {
   return ((i % totalSlides) + totalSlides) % totalSlides;
 }
 
+function realIndex() {
+  return normIndex(focusIndex - headClones);
+}
+
 function createDots() {
+  if (!dotsContainer) return;
+
   dotsContainer.innerHTML = '';
   dots = [];
+
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('span');
-    dot.onclick = () => { focusIndex = i; updateCarousel(); };
+    dot.addEventListener('click', () => {
+      focusIndex = headClones + i;
+      updateCarousel();
+    });
     dotsContainer.appendChild(dot);
     dots.push(dot);
   }
 }
 
-function updateCarousel() {
-  const slideWidth = container.querySelector('.carousel-slide').clientWidth;
-  container.style.transform = `translateX(-${focusIndex * slideWidth}px)`;
-  counter.textContent = `${normIndex(focusIndex) + 1} / ${totalSlides}`;
-  dots.forEach(d => d.classList.remove('active'));
-  dots[normIndex(focusIndex)].classList.add('active');
+function updateCounter() {
+  if (!counter) return;
+  counter.textContent = `${realIndex() + 1} / ${totalSlides}`;
 }
 
+function updateDots() {
+  if (!dots.length) return;
+  dots.forEach(d => d.classList.remove('active'));
+  const idx = realIndex();
+  if (dots[idx]) dots[idx].classList.add('active');
+}
+
+function updateCarousel() {
+  const anySlide = container.querySelector('.carousel-slide');
+  if (!anySlide) return;
+
+  const slideWidth = anySlide.clientWidth;
+  container.style.transform = `translateX(-${focusIndex * slideWidth}px)`;
+
+  updateCounter();
+  updateDots();
+}
+
+/* Evitar doble click mientras anima */
 let isAnimating = false;
+
+function silentJumpTo(newIndex) {
+  container.style.transition = 'none';
+  focusIndex = newIndex;
+  updateCarousel();
+  container.offsetHeight;
+  container.style.transition = 'transform 0.5s ease-in-out';
+}
 
 function nextSlide() {
   if (isAnimating) return;
   isAnimating = true;
 
-  if (focusIndex === totalSlides - 1) {
-    focusIndex = totalSlides;
-    updateCarousel();
+  focusIndex += 1;
+  updateCarousel();
 
-    container.addEventListener('transitionend', function reset(e) {
-      if (e.propertyName !== 'transform') return;
-      container.removeEventListener('transitionend', reset);
-      container.style.transition = 'none';
-      focusIndex = 0;
-      updateCarousel();
-      container.offsetHeight;
-      container.style.transition = 'transform 0.5s ease-in-out';
-      isAnimating = false;
-    });
-  } else {
-    focusIndex++;
-    updateCarousel();
-    container.addEventListener('transitionend', () => isAnimating = false, { once: true });
-  }
+  const onEnd = (e) => {
+    if (e.propertyName !== 'transform') return;
+    container.removeEventListener('transitionend', onEnd);
+
+    // Si llegamos al primer clon del inicio (zona final)
+    if (focusIndex === headClones + totalSlides) {
+      // volver al primero real (después de clones iniciales)
+      silentJumpTo(headClones);
+    }
+
+    isAnimating = false;
+  };
+
+  container.addEventListener('transitionend', onEnd);
 }
 
 function prevSlide() {
   if (isAnimating) return;
   isAnimating = true;
-  focusIndex = (focusIndex - 1 + totalSlides) % totalSlides;
+
+  focusIndex -= 1;
   updateCarousel();
-  container.addEventListener('transitionend', () => isAnimating = false, { once: true });
+
+  const onEnd = (e) => {
+    if (e.propertyName !== 'transform') return;
+    container.removeEventListener('transitionend', onEnd);
+
+    // Si entramos a la zona de clones del inicio (antes del primer real)
+    if (focusIndex === 0) {
+      // saltar al último real (antes de los clones finales)
+      silentJumpTo(headClones + totalSlides - 1);
+    }
+
+    isAnimating = false;
+  };
+
+  container.addEventListener('transitionend', onEnd);
 }
 
 createDots();
