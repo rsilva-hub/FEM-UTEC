@@ -203,6 +203,9 @@
     <!-- ✅ NUEVO: contador debajo del carrusel -->
     <p class="carousel-counter"></p>
 
+    <!-- ✅ NUEVO: barra de cuadraditos -->
+    <div class="carousel-dots"></div>
+
   </div>
 </section>
 
@@ -235,39 +238,88 @@
 <script>
 const container = document.querySelector('.carousel-container');
 const slides = document.querySelectorAll('.carousel-slide');
-let currentIndex = 0;
+
+/*
+  focusIndex = índice de la "foto seleccionada" (0..totalSlides-1).
+  startIndex = índice del primer slide visible (para evitar espacios en blanco
+  cuando se muestran varias tarjetas a la vez).
+*/
+let focusIndex = 0;
 const visibleSlides = 4;
 const totalSlides = slides.length;
 
-/* ✅ NUEVO: contador */
+/* contador existente */
 const counter = document.querySelector('.carousel-counter');
+
+/* ✅ barra de cuadraditos */
+const dotsContainer = document.querySelector('.carousel-dots');
+let dots = [];
+
+function getLastStartIndex() {
+  return Math.max(0, totalSlides - visibleSlides);
+}
+
+function getStartIndex() {
+  return Math.min(focusIndex, getLastStartIndex());
+}
+
+function createDots() {
+  if (!dotsContainer) return;
+
+  dotsContainer.innerHTML = '';
+  dots = [];
+
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('span');
+    dot.addEventListener('click', () => {
+      focusIndex = i;
+      updateCarousel();
+    });
+    dotsContainer.appendChild(dot);
+    dots.push(dot);
+  }
+}
 
 function updateCounter() {
   if (!counter) return;
-  counter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+  counter.textContent = `${focusIndex + 1} / ${totalSlides}`;
+}
+
+function updateDots() {
+  if (!dots.length) return;
+  dots.forEach(d => d.classList.remove('active'));
+  if (dots[focusIndex]) dots[focusIndex].classList.add('active');
 }
 
 function updateCarousel() {
   const slideWidth = slides[0].clientWidth;
-  container.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  const startIndex = getStartIndex();
+  container.style.transform = `translateX(-${startIndex * slideWidth}px)`;
+
   updateCounter();
+  updateDots();
 }
 
 function nextSlide() {
-  currentIndex = (currentIndex < totalSlides - visibleSlides) ? currentIndex + 1 : 0;
+  focusIndex = (focusIndex + 1) % totalSlides; /* ✅ última -> primera */
   updateCarousel();
 }
 
 function prevSlide() {
-  currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - visibleSlides;
+  focusIndex = (focusIndex - 1 + totalSlides) % totalSlides; /* ✅ primera -> última */
   updateCarousel();
 }
 
+/* ✅ inicializa */
+createDots();
+updateCarousel();
+
 setInterval(nextSlide, 10000);
 
-/* ✅ inicializa contador */
-updateCounter();
+/* opcional: recalcular al cambiar tamaño (evita desalineación) */
+window.addEventListener('resize', updateCarousel);
 </script>
 
 </body>
 </html>
+
