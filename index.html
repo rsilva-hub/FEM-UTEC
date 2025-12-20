@@ -112,9 +112,11 @@
     <div class="carousel">
       <div class="carousel-container">
 
+        <!-- 🔽 fetchpriority="high" SOLO en las primeras 4 -->
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other1.png" alt="Carlos Benedetty Torres" loading="eager" decoding="sync">
+            <img src="images/other1.png" alt="Carlos Benedetty Torres"
+                 loading="eager" decoding="sync" fetchpriority="high">
             <div class="profile-info">
               <h3>CARLOS BENEDETTY TORRES</h3>
               <p>PhD. en Ingeniería Estructural<br>UNICAMP – Brasil</p>
@@ -124,7 +126,8 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other2.png" alt="Carlos Humberto Martins" loading="eager" decoding="sync">
+            <img src="images/other2.png" alt="Carlos Humberto Martins"
+                 loading="eager" decoding="sync" fetchpriority="high">
             <div class="profile-info">
               <h3>CARLOS HUMBERTO MARTINS</h3>
               <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
@@ -134,7 +137,8 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other3.png" alt="Pablo Augusto Krahl" loading="eager" decoding="sync">
+            <img src="images/other3.png" alt="Pablo Augusto Krahl"
+                 loading="eager" decoding="sync" fetchpriority="high">
             <div class="profile-info">
               <h3>PABLO AUGUSTO KRAHL</h3>
               <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
@@ -144,7 +148,8 @@
 
         <div class="carousel-slide">
           <div class="profile-card">
-            <img src="images/other4.png" alt="Paula de Oliveira Ribeiro" loading="eager" decoding="sync">
+            <img src="images/other4.png" alt="Paula de Oliveira Ribeiro"
+                 loading="eager" decoding="sync" fetchpriority="high">
             <div class="profile-info">
               <h3>PAULA DE OLIVEIRA RIBEIRO</h3>
               <p>PhD. en Ingeniería Estructural<br>USP – Brasil</p>
@@ -152,6 +157,7 @@
           </div>
         </div>
 
+        <!-- 🔽 resto igual -->
         <div class="carousel-slide">
           <div class="profile-card">
             <img src="images/other5.png" alt="Carlos Roberto Parejo" loading="eager" decoding="sync">
@@ -231,6 +237,7 @@
 </footer>
 
 <script>
+/* --- JS DEL CARRUSEL (SIN CAMBIOS) --- */
 const container = document.querySelector('.carousel-container');
 const originalSlides = Array.from(document.querySelectorAll('.carousel-slide'));
 
@@ -315,4 +322,3 @@ window.addEventListener('resize', updateCarousel);
 
 </body>
 </html>
-
