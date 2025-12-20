@@ -46,7 +46,6 @@
   </div>
 </section>
 
-<!-- ================= BLOQUE 3 COLUMNAS ================= -->
 <section class="overview-text-block">
   <div class="overview-text-container">
 
@@ -102,7 +101,6 @@
   </div>
 </section>
 
-<!-- ================= LECTURERS ================= -->
 <section class="lecturers-banner" id="lecturers">
   <div class="lecturers-container">
     <h2>LECTURERS</h2>
@@ -241,57 +239,42 @@
 </footer>
 
 <script>
-/* --- JS DEL CARRUSEL (FIX: no “desaparece” al retroceder + preload) --- */
+/* --- JS DEL CARRUSEL (CONTINUO + RESPONSIVE + SIN “HUECOS”) --- */
+const carousel = document.querySelector('.carousel');
 const container = document.querySelector('.carousel-container');
-const originalSlides = Array.from(document.querySelectorAll('.carousel-slide'));
-
-const visibleSlides = 4;
-const totalSlides = originalSlides.length;
 
 const counter = document.querySelector('.carousel-counter');
 const dotsContainer = document.querySelector('.carousel-dots');
+
+let originalSlides = Array.from(container.children); // 8 slides reales
+let totalSlides = originalSlides.length;
+
 let dots = [];
+let clonesCount = 0;
+let focusIndex = 0;
+let isAnimating = false;
 
-/* ✅ Preload de TODAS las imágenes del carrusel (incluye la #7) */
-(function preloadCarouselImages() {
-  const imgs = originalSlides
-    .map(slide => slide.querySelector('img'))
-    .filter(Boolean);
-
-  imgs.forEach(img => {
+/* ✅ Precarga (evita “parpadeos” si el navegador aún no cacheó) */
+(function preloadImages() {
+  originalSlides.forEach(slide => {
+    const img = slide.querySelector('img');
+    if (!img) return;
     const pre = new Image();
     pre.src = img.currentSrc || img.src;
   });
 })();
 
-/* ✅ Clones al inicio y al final para loop suave en ambos sentidos */
-const clonesCount = Math.max(0, visibleSlides - 1);
+function getSlideWidth() {
+  const s = container.querySelector('.carousel-slide');
+  return s ? s.getBoundingClientRect().width : 0;
+}
 
-(function buildClones() {
-  // clones al INICIO: últimos N (manteniendo orden correcto)
-  for (let i = totalSlides - clonesCount; i < totalSlides; i++) {
-    if (i < 0) continue;
-    const clone = originalSlides[i].cloneNode(true);
-    clone.classList.add('is-clone');
-    container.insertBefore(clone, container.firstChild);
-  }
-  // clones al FINAL: primeros N
-  for (let i = 0; i < clonesCount; i++) {
-    const clone = originalSlides[i].cloneNode(true);
-    clone.classList.add('is-clone');
-    container.appendChild(clone);
-  }
-
-  // ✅ También precargamos imágenes de clones (por si el navegador no reusa cache)
-  const cloneImgs = container.querySelectorAll('.is-clone img');
-  cloneImgs.forEach(img => {
-    const pre = new Image();
-    pre.src = img.currentSrc || img.src;
-  });
-})();
-
-/* índice de track (incluye clones) */
-let focusIndex = clonesCount;
+function calcSlidesPerView() {
+  const slideW = getSlideWidth();
+  if (!slideW) return 4;
+  const perView = Math.round(carousel.clientWidth / slideW);
+  return Math.max(1, perView);
+}
 
 function realIndex() {
   const idx = focusIndex - clonesCount;
@@ -300,7 +283,6 @@ function realIndex() {
 
 function createDots() {
   if (!dotsContainer) return;
-
   dotsContainer.innerHTML = '';
   dots = [];
 
@@ -308,46 +290,69 @@ function createDots() {
     const dot = document.createElement('span');
     dot.addEventListener('click', () => {
       focusIndex = clonesCount + i;
-      updateCarousel();
+      updateCarousel(true);
     });
     dotsContainer.appendChild(dot);
     dots.push(dot);
   }
 }
 
-/* ✅ ancho real con subpíxeles (evita acumulación de error y “huecos”) */
-function getSlideWidth() {
-  const first = container.querySelector('.carousel-slide');
-  if (!first) return 0;
-  return first.getBoundingClientRect().width;
-}
+function updateCarousel(animate) {
+  const slideW = getSlideWidth();
+  if (!slideW) return;
 
-function updateCarousel() {
-  const slideWidth = getSlideWidth();
-  if (!slideWidth) return;
-
-  container.style.transform = `translate3d(-${focusIndex * slideWidth}px, 0, 0)`;
+  container.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+  container.style.transform = `translate3d(-${focusIndex * slideW}px,0,0)`;
 
   if (counter) counter.textContent = `${realIndex() + 1} / ${totalSlides}`;
 
   if (dots.length) {
     dots.forEach(d => d.classList.remove('active'));
-    const idx = realIndex();
-    if (dots[idx]) dots[idx].classList.add('active');
+    dots[realIndex()]?.classList.add('active');
   }
 }
 
-/* ✅ Evitar doble click mientras anima */
-let isAnimating = false;
+function rebuildCarousel() {
+  // 1) limpiar y reinsertar los slides reales
+  container.innerHTML = '';
+  const frag = document.createDocumentFragment();
+  originalSlides.forEach(s => frag.appendChild(s));
+  container.appendChild(frag);
 
+  // 2) recalcular cuántos se ven realmente
+  const slidesPerView = calcSlidesPerView();
+
+  // 3) clones suficientes para cubrir el viewport sin “huecos”
+  clonesCount = slidesPerView; // importante (no fijo 4)
+  totalSlides = originalSlides.length;
+
+  // clones al INICIO: últimos clonesCount
+  for (let i = totalSlides - clonesCount; i < totalSlides; i++) {
+    if (i < 0) continue;
+    const clone = originalSlides[i].cloneNode(true);
+    clone.classList.add('is-clone');
+    container.insertBefore(clone, container.firstChild);
+  }
+
+  // clones al FINAL: primeros clonesCount
+  for (let i = 0; i < clonesCount; i++) {
+    const clone = originalSlides[i].cloneNode(true);
+    clone.classList.add('is-clone');
+    container.appendChild(clone);
+  }
+
+  // 4) arrancar en el primer slide real
+  focusIndex = clonesCount;
+
+  createDots();
+  updateCarousel(false);
+}
+
+/* ✅ salto silencioso estable */
 function silentJumpTo(newFocusIndex) {
-  container.style.transition = 'none';
   focusIndex = newFocusIndex;
-  updateCarousel();
-
-  // forzar reflow
-  container.offsetHeight;
-
+  updateCarousel(false);
+  container.offsetHeight; // reflow
   container.style.transition = 'transform 0.5s ease-in-out';
 }
 
@@ -356,13 +361,13 @@ function nextSlide() {
   isAnimating = true;
 
   focusIndex += 1;
-  updateCarousel();
+  updateCarousel(true);
 
   const onEnd = (e) => {
     if (e.propertyName !== 'transform') return;
     container.removeEventListener('transitionend', onEnd);
 
-    // ✅ si entramos a clones del FINAL: saltar al primero real
+    // si estamos en clones del final, volvemos al primer real
     if (focusIndex >= clonesCount + totalSlides) {
       silentJumpTo(clonesCount);
     }
@@ -378,14 +383,14 @@ function prevSlide() {
   isAnimating = true;
 
   focusIndex -= 1;
-  updateCarousel();
+  updateCarousel(true);
 
   const onEnd = (e) => {
     if (e.propertyName !== 'transform') return;
     container.removeEventListener('transitionend', onEnd);
 
-    // ✅ si entramos a clones del INICIO: saltar al último real
-    if (focusIndex <= 0) {
+    // si estamos en clones del inicio, saltamos al último real
+    if (focusIndex < clonesCount) {
       silentJumpTo(clonesCount + totalSlides - 1);
     }
 
@@ -395,15 +400,14 @@ function prevSlide() {
   container.addEventListener('transitionend', onEnd);
 }
 
-createDots();
-updateCarousel();
+/* init */
+rebuildCarousel();
 
-/* ✅ resize robusto: recalcula sin animación para evitar “saltos” */
+/* ✅ en resize: reconstruir clones según el nuevo “slides por vista” */
 window.addEventListener('resize', () => {
-  container.style.transition = 'none';
-  updateCarousel();
-  container.offsetHeight;
-  container.style.transition = 'transform 0.5s ease-in-out';
+  // si estás animando, no reconstruyas a media transición
+  if (isAnimating) return;
+  rebuildCarousel();
 });
 </script>
 
