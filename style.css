@@ -513,3 +513,80 @@ button.next { right: 10px; }
   background: #ffffff;
   opacity: 1;
 }
+
+/* =========================================================
+   NUEVO: CLICK EN CADA FOTO DEL CARRUSEL (SIN CAMBIAR DISEÑO)
+   ========================================================= */
+.lecturer-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.lecturer-link:hover {
+  cursor: pointer;
+}
+
+.lecturer-link:focus-visible {
+  outline: 2px solid #2DA9E9;
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* =========================================================
+   NUEVO: ESTILOS PARA lecturers.html (NO AFECTA index.html)
+   ========================================================= */
+.lecturers-page {
+  background: #000000;
+  color: #ffffff;
+  padding: 70px 0;
+  margin-top: -1px;
+}
+
+.lecturers-page h2 {
+  color: #ffffff;
+}
+
+.lecturer-profile {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 30px;
+  margin-top: 35px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  scroll-margin-top: 120px;
+}
+
+.lecturer-profile img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #eeeeee;
+}
+
+.lecturer-profile h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.lecturer-profile .lecturer-meta {
+  color: #e6e6e6;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.lecturer-profile .lecturer-meta strong {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .lecturer-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .lecturer-profile img {
+    height: 320px;
+  }
+}
