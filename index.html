@@ -200,10 +200,7 @@
       <button class="next" onclick="nextSlide()">&#10095;</button>
     </div>
 
-    <!-- ✅ NUEVO: contador debajo del carrusel -->
     <p class="carousel-counter"></p>
-
-    <!-- ✅ NUEVO: barra de cuadraditos -->
     <div class="carousel-dots"></div>
 
   </div>
@@ -237,30 +234,29 @@
 
 <script>
 const container = document.querySelector('.carousel-container');
-const slides = document.querySelectorAll('.carousel-slide');
+const originalSlides = Array.from(document.querySelectorAll('.carousel-slide'));
 
-/*
-  focusIndex = índice de la "foto seleccionada" (0..totalSlides-1).
-  startIndex = índice del primer slide visible (para evitar espacios en blanco
-  cuando se muestran varias tarjetas a la vez).
-*/
 let focusIndex = 0;
 const visibleSlides = 4;
-const totalSlides = slides.length;
+const totalSlides = originalSlides.length;
 
-/* contador existente */
 const counter = document.querySelector('.carousel-counter');
-
-/* ✅ barra de cuadraditos */
 const dotsContainer = document.querySelector('.carousel-dots');
 let dots = [];
 
-function getLastStartIndex() {
-  return Math.max(0, totalSlides - visibleSlides);
-}
+/* ✅ CLONAR AL FINAL para que 6/8 y 7/8 sí “avancen” sin dejar espacios en blanco */
+(function appendTailClones() {
+  const clonesNeeded = Math.max(0, visibleSlides - 1);
+  for (let i = 0; i < clonesNeeded; i++) {
+    const clone = originalSlides[i].cloneNode(true);
+    clone.classList.add('is-clone');
+    container.appendChild(clone);
+  }
+})();
 
-function getStartIndex() {
-  return Math.min(focusIndex, getLastStartIndex());
+/* Releer slides (incluye clones) solo para cálculo de ancho/transform */
+function getAllSlides() {
+  return container.querySelectorAll('.carousel-slide');
 }
 
 function createDots() {
@@ -292,34 +288,34 @@ function updateDots() {
 }
 
 function updateCarousel() {
+  const slides = getAllSlides();
+  if (!slides.length) return;
+
   const slideWidth = slides[0].clientWidth;
-  const startIndex = getStartIndex();
-  container.style.transform = `translateX(-${startIndex * slideWidth}px)`;
+
+  /* ✅ mover por focusIndex (ya no se bloquea en 6/8, 7/8) */
+  container.style.transform = `translateX(-${focusIndex * slideWidth}px)`;
 
   updateCounter();
   updateDots();
 }
 
 function nextSlide() {
-  focusIndex = (focusIndex + 1) % totalSlides; /* ✅ última -> primera */
+  focusIndex = (focusIndex + 1) % totalSlides; /* última -> primera */
   updateCarousel();
 }
 
 function prevSlide() {
-  focusIndex = (focusIndex - 1 + totalSlides) % totalSlides; /* ✅ primera -> última */
+  focusIndex = (focusIndex - 1 + totalSlides) % totalSlides; /* primera -> última */
   updateCarousel();
 }
 
-/* ✅ inicializa */
 createDots();
 updateCarousel();
 
 setInterval(nextSlide, 10000);
-
-/* opcional: recalcular al cambiar tamaño (evita desalineación) */
 window.addEventListener('resize', updateCarousel);
 </script>
 
 </body>
 </html>
-
