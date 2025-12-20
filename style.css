@@ -589,4 +589,7 @@ button.next { right: 10px; }
   .lecturer-profile img {
     height: 320px;
   }
+  .lecturer-meta p {
+    text-align: justify;
+  }
 }
