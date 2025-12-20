@@ -329,8 +329,8 @@ function rebuildCarousel() {
   clonesCount = slidesPerView; // importante (no fijo 4)
   totalSlides = originalSlides.length;
 
-  // clones al INICIO: últimos clonesCount
-  for (let i = totalSlides - clonesCount; i < totalSlides; i++) {
+  /* ✅ FIX: clones al INICIO en ORDEN correcto (evita que Vinicius “cambie”) */
+  for (let i = totalSlides - 1; i >= totalSlides - clonesCount; i--) {
     if (i < 0) continue;
     const clone = originalSlides[i].cloneNode(true);
     clone.classList.add('is-clone');
@@ -353,6 +353,7 @@ function rebuildCarousel() {
 
 /* ✅ salto silencioso estable */
 function silentJumpTo(newFocusIndex) {
+  container.style.transition = 'none';
   focusIndex = newFocusIndex;
   updateCarousel(false);
   container.offsetHeight; // reflow
@@ -408,7 +409,6 @@ rebuildCarousel();
 
 /* ✅ en resize: reconstruir clones según el nuevo “slides por vista” */
 window.addEventListener('resize', () => {
-  // si estás animando, no reconstruyas a media transición
   if (isAnimating) return;
   rebuildCarousel();
 });
@@ -416,3 +416,4 @@ window.addEventListener('resize', () => {
 
 </body>
 </html>
+
