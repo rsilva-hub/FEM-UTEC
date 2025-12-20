@@ -244,7 +244,7 @@ const counter = document.querySelector('.carousel-counter');
 const dotsContainer = document.querySelector('.carousel-dots');
 let dots = [];
 
-/* ✅ CLONAR AL FINAL para que 6/8 y 7/8 sí “avancen” sin dejar espacios en blanco */
+/* ✅ CLONAR AL FINAL para rellenar, y permitir el paso 8/8 -> (clon) 1/8 sin huecos */
 (function appendTailClones() {
   const clonesNeeded = Math.max(0, visibleSlides - 1);
   for (let i = 0; i < clonesNeeded; i++) {
@@ -254,9 +254,12 @@ let dots = [];
   }
 })();
 
-/* Releer slides (incluye clones) solo para cálculo de ancho/transform */
 function getAllSlides() {
   return container.querySelectorAll('.carousel-slide');
+}
+
+function normIndex(i) {
+  return ((i % totalSlides) + totalSlides) % totalSlides;
 }
 
 function createDots() {
@@ -278,13 +281,14 @@ function createDots() {
 
 function updateCounter() {
   if (!counter) return;
-  counter.textContent = `${focusIndex + 1} / ${totalSlides}`;
+  counter.textContent = `${normIndex(focusIndex) + 1} / ${totalSlides}`;
 }
 
 function updateDots() {
   if (!dots.length) return;
   dots.forEach(d => d.classList.remove('active'));
-  if (dots[focusIndex]) dots[focusIndex].classList.add('active');
+  const idx = normIndex(focusIndex);
+  if (dots[idx]) dots[idx].classList.add('active');
 }
 
 function updateCarousel() {
@@ -292,22 +296,76 @@ function updateCarousel() {
   if (!slides.length) return;
 
   const slideWidth = slides[0].clientWidth;
-
-  /* ✅ mover por focusIndex (ya no se bloquea en 6/8, 7/8) */
   container.style.transform = `translateX(-${focusIndex * slideWidth}px)`;
 
   updateCounter();
   updateDots();
 }
 
+/* ✅ Evitar doble click mientras anima */
+let isAnimating = false;
+
+/*
+  ✅ AVANCE SIN “RETROCEDER TODO”:
+  - Del 8/8 avanzamos al índice 8 (que muestra el clon del 1).
+  - Al terminar la transición, reseteamos a 0 SIN transición (salto invisible).
+*/
 function nextSlide() {
-  focusIndex = (focusIndex + 1) % totalSlides; /* última -> primera */
+  if (isAnimating) return;
+  isAnimating = true;
+
+  // si estamos en el último real, avanzamos al "extra" (clon del 1)
+  if (focusIndex === totalSlides - 1) {
+    focusIndex = totalSlides;       // muestra el clon del primero
+    updateCarousel();
+
+    const onEnd = (e) => {
+      if (e.propertyName !== 'transform') return;
+      container.removeEventListener('transitionend', onEnd);
+
+      // reset silencioso al primero real
+      container.style.transition = 'none';
+      focusIndex = 0;
+      updateCarousel();
+
+      // forzar reflow para que el navegador aplique el "none"
+      container.offsetHeight;
+
+      // restaurar transición
+      container.style.transition = 'transform 0.5s ease-in-out';
+      isAnimating = false;
+    };
+
+    container.addEventListener('transitionend', onEnd);
+    return;
+  }
+
+  // avance normal
+  focusIndex += 1;
   updateCarousel();
+
+  const onEndNormal = (e) => {
+    if (e.propertyName !== 'transform') return;
+    container.removeEventListener('transitionend', onEndNormal);
+    isAnimating = false;
+  };
+  container.addEventListener('transitionend', onEndNormal);
 }
 
 function prevSlide() {
-  focusIndex = (focusIndex - 1 + totalSlides) % totalSlides; /* primera -> última */
+  if (isAnimating) return;
+  isAnimating = true;
+
+  // retroceso normal (mantengo tu loop actual sin tocar más)
+  focusIndex = (focusIndex - 1 + totalSlides) % totalSlides;
   updateCarousel();
+
+  const onEndNormal = (e) => {
+    if (e.propertyName !== 'transform') return;
+    container.removeEventListener('transitionend', onEndNormal);
+    isAnimating = false;
+  };
+  container.addEventListener('transitionend', onEndNormal);
 }
 
 createDots();
