@@ -1,4 +1,4 @@
-/* ========================= 
+/* =========================  
    RESET
    ========================= */
 * {
@@ -263,6 +263,10 @@ h2 {
 .carousel-container {
   display: flex;
   transition: transform 0.5s ease-in-out;
+
+  /* ✅ NUEVO: evita “parpadeos”/saltos raros en algunos navegadores */
+  will-change: transform;
+  transform: translate3d(0,0,0);
 }
 
 .carousel-slide {
