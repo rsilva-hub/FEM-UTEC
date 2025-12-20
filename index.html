@@ -241,7 +241,7 @@
 </footer>
 
 <script>
-/* --- JS DEL CARRUSEL (solo cambios internos del carrusel) --- */
+/* --- JS DEL CARRUSEL (FIX: no “desaparece” al retroceder + preload) --- */
 const container = document.querySelector('.carousel-container');
 const originalSlides = Array.from(document.querySelectorAll('.carousel-slide'));
 
@@ -252,11 +252,23 @@ const counter = document.querySelector('.carousel-counter');
 const dotsContainer = document.querySelector('.carousel-dots');
 let dots = [];
 
+/* ✅ Preload de TODAS las imágenes del carrusel (incluye la #7) */
+(function preloadCarouselImages() {
+  const imgs = originalSlides
+    .map(slide => slide.querySelector('img'))
+    .filter(Boolean);
+
+  imgs.forEach(img => {
+    const pre = new Image();
+    pre.src = img.currentSrc || img.src;
+  });
+})();
+
 /* ✅ Clones al inicio y al final para loop suave en ambos sentidos */
 const clonesCount = Math.max(0, visibleSlides - 1);
 
 (function buildClones() {
-  // clones al INICIO: últimos N
+  // clones al INICIO: últimos N (manteniendo orden correcto)
   for (let i = totalSlides - clonesCount; i < totalSlides; i++) {
     if (i < 0) continue;
     const clone = originalSlides[i].cloneNode(true);
@@ -269,13 +281,19 @@ const clonesCount = Math.max(0, visibleSlides - 1);
     clone.classList.add('is-clone');
     container.appendChild(clone);
   }
+
+  // ✅ También precargamos imágenes de clones (por si el navegador no reusa cache)
+  const cloneImgs = container.querySelectorAll('.is-clone img');
+  cloneImgs.forEach(img => {
+    const pre = new Image();
+    pre.src = img.currentSrc || img.src;
+  });
 })();
 
 /* índice de track (incluye clones) */
 let focusIndex = clonesCount;
 
 function realIndex() {
-  // índice lógico (0..totalSlides-1)
   const idx = focusIndex - clonesCount;
   return ((idx % totalSlides) + totalSlides) % totalSlides;
 }
@@ -297,15 +315,21 @@ function createDots() {
   }
 }
 
+/* ✅ ancho real con subpíxeles (evita acumulación de error y “huecos”) */
+function getSlideWidth() {
+  const first = container.querySelector('.carousel-slide');
+  if (!first) return 0;
+  return first.getBoundingClientRect().width;
+}
+
 function updateCarousel() {
-  const slide = container.querySelector('.carousel-slide');
-  if (!slide) return;
+  const slideWidth = getSlideWidth();
+  if (!slideWidth) return;
 
-  const slideWidth = slide.clientWidth;
-  container.style.transform = `translateX(-${focusIndex * slideWidth}px)`;
+  container.style.transform = `translate3d(-${focusIndex * slideWidth}px, 0, 0)`;
 
-  // counter y dots (lógicos)
   if (counter) counter.textContent = `${realIndex() + 1} / ${totalSlides}`;
+
   if (dots.length) {
     dots.forEach(d => d.classList.remove('active'));
     const idx = realIndex();
@@ -321,7 +345,7 @@ function silentJumpTo(newFocusIndex) {
   focusIndex = newFocusIndex;
   updateCarousel();
 
-  // forzar reflow para aplicar el transition none
+  // forzar reflow
   container.offsetHeight;
 
   container.style.transition = 'transform 0.5s ease-in-out';
@@ -338,8 +362,8 @@ function nextSlide() {
     if (e.propertyName !== 'transform') return;
     container.removeEventListener('transitionend', onEnd);
 
-    // Si entramos en la zona de clones del FINAL, saltamos al primero real (sin efecto visual)
-    if (focusIndex === clonesCount + totalSlides) {
+    // ✅ si entramos a clones del FINAL: saltar al primero real
+    if (focusIndex >= clonesCount + totalSlides) {
       silentJumpTo(clonesCount);
     }
 
@@ -360,8 +384,8 @@ function prevSlide() {
     if (e.propertyName !== 'transform') return;
     container.removeEventListener('transitionend', onEnd);
 
-    // Si entramos en la zona de clones del INICIO, saltamos al último real (sin efecto visual)
-    if (focusIndex === 0) {
+    // ✅ si entramos a clones del INICIO: saltar al último real
+    if (focusIndex <= 0) {
       silentJumpTo(clonesCount + totalSlides - 1);
     }
 
@@ -373,7 +397,14 @@ function prevSlide() {
 
 createDots();
 updateCarousel();
-window.addEventListener('resize', updateCarousel);
+
+/* ✅ resize robusto: recalcula sin animación para evitar “saltos” */
+window.addEventListener('resize', () => {
+  container.style.transition = 'none';
+  updateCarousel();
+  container.offsetHeight;
+  container.style.transition = 'transform 0.5s ease-in-out';
+});
 </script>
 
 </body>
