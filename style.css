@@ -389,6 +389,10 @@ button.next { right: 10px; }
   border-radius: 14px;
 }
 
+.venue-container p {
+  text-align: justify;
+}
+
 /* =========================
    ORGANIZATION
    ========================= */
