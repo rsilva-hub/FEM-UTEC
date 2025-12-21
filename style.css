@@ -170,6 +170,7 @@ h2 {
   z-index: 1;
   max-width: 1100px;
   padding: 0 20px;
+  margin-top: -100px;
 }
 
 .overview-hero h2 {
@@ -249,6 +250,10 @@ h2 {
 
 .lecturers-banner p {
   margin-top: 20px;
+}
+
+.lecturers-container p {
+  text-align: justify;
 }
 
 /* =========================
