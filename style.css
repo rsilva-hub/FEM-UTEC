@@ -575,7 +575,7 @@ button.next { right: 10px; }
 
   .overview-text-column {
     text-align: left;
-    padding: 0 20px;
+    padding: 0;
   }
 
   /* ===== AJUSTE HERO (NO TOCA EL FONDO) ===== */
