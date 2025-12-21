@@ -426,7 +426,8 @@ button.next { right: 10px; }
 
 /* opcional: reduce el espacio entre título y texto como en DOCENTES/SEDE */
 .organization-container h2 {
-  margin-bottom: 20px;
+  border-bottom: none !important;   /* anula el h2 global */
+  padding-bottom: 0 !important;
 }
 
 .organization-container p {
@@ -456,10 +457,21 @@ button.next { right: 10px; }
   margin-left: -15px;
 }
 
+/* línea solo del ancho del texto */
 .organization-title {
-  border-bottom: 2px solid #2DA9E9;
   display: inline-block;
-  padding-bottom: 5px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.organization-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #2DA9E9;
 }
 
 /* =========================
