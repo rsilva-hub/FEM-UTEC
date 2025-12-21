@@ -425,11 +425,6 @@ button.next { right: 10px; }
 }
 
 /* opcional: reduce el espacio entre título y texto como en DOCENTES/SEDE */
-.organization-container h2 {
-  border-bottom: none !important;   /* anula el h2 global */
-  padding-bottom: 0 !important;
-}
-
 .organization-container p {
   margin-top: 0;
   text-align: justify;
@@ -457,22 +452,28 @@ button.next { right: 10px; }
   margin-left: -15px;
 }
 
-/* línea solo del ancho del texto */
-.organization-title {
-  display: inline-block;
+/* ✅ subrayado solo en el título “ORGANIZACIÓN” (más fino y del ancho del texto) */
+.organization-container h2 {
+  border-bottom: none;        /* anula el subrayado global de h2 */
+  display: inline-block;      /* el ancho se ajusta al texto */
   position: relative;
   padding-bottom: 8px;
+  margin-bottom: 20px;
 }
 
-.organization-title::after {
+.organization-container h2::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 2px;
+  height: 1px;               /* ✅ más delgado */
   background: #2DA9E9;
 }
+
+/* ⚠️ seguridad: si “organization-title” se aplicó por error a un contenedor, desactívalo */
+.organization-title { border-bottom: none; }
+.organization-title::after { display: none; }
 
 /* =========================
    FOOTER
@@ -616,7 +617,6 @@ button.next { right: 10px; }
 
 .lecturers-page h2 {
   color: #ffffff;
-  margin-bottom: 20px;
 }
 
 .lecturer-profile {
@@ -667,4 +667,3 @@ button.next { right: 10px; }
     height: 320px;
   }
 }
-
