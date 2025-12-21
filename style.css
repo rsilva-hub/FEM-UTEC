@@ -202,6 +202,43 @@ h2 {
 }
 
 /* =========================
+   BADGE SUPERIOR
+   ========================= */
+.overview-badge {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+
+  color: #0b3a5a;
+  background: rgba(45, 169, 233, 0.18);
+  border: 1px solid rgba(45, 169, 233, 0.35);
+}
+
+/* =========================
+   FECHA DESTACADA
+   ========================= */
+.overview-date {
+  margin-top: 22px;
+  padding: 10px 14px;
+  display: inline-block;
+
+  font-size: 14px;
+  border-radius: 10px;
+
+  background: rgba(0, 0, 0, 0.06);
+  color: #111111;
+}
+
+.overview-date strong {
+  font-weight: 700;
+}
+
+/* =========================
    OVERVIEW – TEXT BLOCK (NUEVO)
    ========================= */
 .overview-text-block {
