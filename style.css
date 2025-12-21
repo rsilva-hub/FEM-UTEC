@@ -398,7 +398,7 @@ button.next { right: 10px; }
 }
 
 /* =========================
-   ORGANIZATION
+   ORGANIZACIÓN (TEXTO IZQ + LOGOS DER)
    ========================= */
 .organization-banner {
   background: #000000;
@@ -410,16 +410,42 @@ button.next { right: 10px; }
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
+
+  /* ✅ nuevo layout */
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  column-gap: 50px;
 }
 
+/* ✅ texto a la izquierda */
+.organization-container h2,
+.organization-container p {
+  grid-column: 1;
+}
+
+/* opcional: reduce el espacio entre título y texto como en DOCENTES/SEDE */
+.organization-container h2 {
+  margin-bottom: 20px;
+}
+
+.organization-container p {
+  margin-top: 0;
+  text-align: justify;
+}
+
+/* ✅ logos a la derecha */
 .organization-logos {
-  margin-top: 30px;
+  grid-column: 2;
+  margin-top: 0;                 /* ya no baja */
   display: flex;
+  justify-content: flex-end;     /* se pegan a la derecha */
+  align-items: center;
   gap: 30px;
   flex-wrap: wrap;
-  align-items: center;
 }
 
+/* estilos de logos (mantengo lo tuyo) */
 .organization-logos img {
   height: 50px;
   filter: brightness(0) invert(1);
@@ -498,6 +524,23 @@ button.next { right: 10px; }
   .carousel-slide {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .organization-container {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .organization-container h2,
+  .organization-container p,
+  .organization-logos {
+    grid-column: 1;
+  }
+
+  .organization-logos {
+    justify-content: flex-start;
   }
 }
 
