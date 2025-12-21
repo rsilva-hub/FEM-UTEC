@@ -466,9 +466,10 @@ button.next { right: 10px; }
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: 140px;
   height: 1px;               /* ✅ más delgado */
   background: #2DA9E9;
+  margin-top: 8 px;
 }
 
 /* ⚠️ seguridad: si “organization-title” se aplicó por error a un contenedor, desactívalo */
