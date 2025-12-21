@@ -102,8 +102,8 @@ h2 {
 .brand-title {
   max-width: 620px;
   text-align: left;
-  font-size: 19px;
-  line-height: 1.1;
+  font-size: 12px;
+  line-height: 1.3;
   font-weight: 700;
   white-space: normal;
 }
@@ -533,9 +533,6 @@ button.next { right: 10px; }
   border-radius: 12px;
 }
 
-/* =========================================================
-   NUEVO: ESTILOS PARA lecturers.html (NO AFECTA index.html)
-   ========================================================= */
 .lecturers-page {
   background: #000000;
   color: #ffffff;
@@ -577,6 +574,11 @@ button.next { right: 10px; }
   line-height: 1.6;
 }
 
+/* ✅ JUSTIFICADO – DESKTOP Y MOBILE */
+.lecturer-profile .lecturer-meta p {
+  text-align: justify;
+}
+
 .lecturer-profile .lecturer-meta strong {
   color: #ffffff;
 }
@@ -589,7 +591,5 @@ button.next { right: 10px; }
   .lecturer-profile img {
     height: 320px;
   }
-  .lecturer-meta p {
-    text-align: justify;
-  }
 }
+
