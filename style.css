@@ -135,54 +135,97 @@ h2 {
 .nav-link.active {
   border-color: #d8d8d8;
 }
-
 /* =========================
-   COURSE OVERVIEW HERO
+   HERO: más vivo y moderno
    ========================= */
-.overview-hero {
-  position: relative;
-  min-height: 85vh;
-  padding: 120px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-  background: url("images/overview-bg.png") center / cover no-repeat;
+
+/* 1) sube un poco el contenido y dale aire */
+.overview-hero{
+  min-height: 82vh;           /* un poco menos alto */
+  padding: 110px 20px 90px;   /* más control */
 }
 
-.overview-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+/* 2) mueve el degradado para que no “mate” el texto */
+.overview-hero::after{
   background: linear-gradient(
     to bottom,
     rgba(255,255,255,0.00) 0%,
-    rgba(255,255,255,0.00) 55%,
-    rgba(0,0,0,0.55) 75%,
+    rgba(255,255,255,0.00) 48%,
+    rgba(0,0,0,0.40) 72%,
     rgba(0,0,0,1.00) 100%
   );
 }
 
-.overview-content {
+/* 3) la tarjeta (sin cambiar HTML) */
+.overview-content{
+  max-width: 980px;
+  margin-top: -120px;              /* sube para alejarse del negro */
+  padding: 26px 28px;              /* “card” */
+  border-radius: 18px;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.55);
+}
+
+/* 4) badge superior sutil, para que no sea solo “texto” */
+.overview-content::before{
+  content: "CURSO INTERNACIONAL | FEM + NO LINEALIDAD";
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  font-size: 12px;
+  letter-spacing: 0.9px;
+  font-weight: 700;
+  color: #0d2b3a;
+  background: rgba(45,169,233,0.18);
+  border: 1px solid rgba(45,169,233,0.35);
+  border-radius: 999px;
+}
+
+/* 5) título con más presencia y mejor espaciado */
+.overview-hero h2{
+  font-size: 34px;
+  line-height: 1.12;
+  margin-bottom: 14px;
+  letter-spacing: 0.4px;
+}
+
+/* 6) subrayado más fino y “pro” (menos grueso que antes) */
+.overview-hero h2{
+  border-bottom: none; /* apaga el global en este caso */
+  display: inline-block;
   position: relative;
-  z-index: 1;
-  max-width: 1100px;
-  padding: 0 20px;
-  margin-top: -100px;
+  padding-bottom: 10px;
+}
+.overview-hero h2::after{
+  content:"";
+  position:absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 220px;
+  height: 2px;        /* más fino */
+  background: #2DA9E9;
+  border-radius: 2px;
 }
 
-.overview-hero h2 {
-  color: #000000;
-  font-size: 28px;
-  margin-bottom: 20px;
+/* 7) párrafo con mejor legibilidad */
+.overview-hero p{
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #1d1d1d;
+  margin-top: 14px;
 }
 
-.overview-hero p {
-  color: #222222;
-  font-size: 16px;
-  line-height: 1.45;
+/* 8) resalta “Fecha de inicio” sin que parezca pegado */
+.overview-hero p strong{
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.06);
 }
 
 /* =========================
@@ -524,6 +567,26 @@ button.next { right: 10px; }
     text-align: left;
     padding: 0 20px;
   }
+
+  /* ===== AJUSTE HERO (NO TOCA EL FONDO) ===== */
+  .overview-content {
+    margin-top: -90px;
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+
+  .overview-hero h2 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .overview-hero h2::after {
+    width: 180px;
+  }
+
+  .overview-hero p {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -538,12 +601,31 @@ button.next { right: 10px; }
     flex: 0 0 50%;
     max-width: 50%;
   }
+
+  /* HERO más compacto en tablets */
+  .overview-content {
+    margin-top: -70px;
+  }
 }
 
 @media (max-width: 480px) {
   .carousel-slide {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+
+  /* HERO móvil */
+  .overview-content {
+    margin-top: -50px;
+    padding: 16px 14px;
+  }
+
+  .overview-hero h2 {
+    font-size: 22px;
+  }
+
+  .overview-hero h2::after {
+    width: 140px;
   }
 }
 
