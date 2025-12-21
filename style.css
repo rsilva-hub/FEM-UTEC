@@ -174,14 +174,14 @@ h2 {
 
 .overview-hero h2 {
   color: #000000;
-  font-size: 32px;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 
 .overview-hero p {
   color: #222222;
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.45;
 }
 
 /* =========================
