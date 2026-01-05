@@ -519,6 +519,7 @@ button.next { right: 10px; }
 }
 
 .organization-logos img:nth-child(3) {
+  height: 70px;
   margin-left: -15px;
 }
 
