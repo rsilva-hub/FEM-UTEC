@@ -69,9 +69,8 @@ h2 {
   opacity: 0.95;
 }
 
-/* idioma NO activo (link) → celeste */
 .topbar-inner a.lang-link {
-  color: #2DA9E9 ;
+  color: #ffffff ;
   text-decoration: none;
   font-weight: 500;
 }
@@ -80,9 +79,8 @@ h2 {
   text-decoration: underline;
 }
 
-/* idioma activo → blanco */
 .topbar-inner .lang-active {
-  color: #ffffff;
+  color: #2DA9E9;
   font-weight: 600;
   cursor: default;
   opacity: 1; /* anula el opacity previo del span */
