@@ -71,7 +71,7 @@ h2 {
 
 /* idioma NO activo (link) → celeste */
 .topbar-inner a.lang-link {
-  color: #2DA9E9;
+  color: #2DA9E9 ;
   text-decoration: none;
   font-weight: 500;
 }
