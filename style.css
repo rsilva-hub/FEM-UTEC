@@ -326,32 +326,6 @@ h2 {
   text-align: justify;
 }
 
-.lecturer-links {
-  margin-top: 12px;
-  display: flex;
-  gap: 12px;
-}
-
-.lecturer-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  padding: 0;
-  border: none;
-}
-
-.lecturer-links img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  display: block;
-}
-
-.lecturer-links a:first-child img {
-  width: 32px;      /* ajusta: prueba 10px, 12px, 14px */
-  height: 32px;
-}
 
 /* =========================
    CAROUSEL
