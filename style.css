@@ -327,26 +327,23 @@ h2 {
 }
 
 .lecturer-links {
-  margin-top: 16px;
+  margin-top: 12px;
   display: flex;
-  gap: 16px;
+  gap: 12px;
 }
 
 .lecturer-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: auto;
   background: none;
-  border-radius: 0;
   padding: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
 }
 
 .lecturer-links img {
-  width: 32px;
-  height: auto;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
   display: block;
 }
