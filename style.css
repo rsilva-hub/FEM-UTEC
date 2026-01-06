@@ -348,6 +348,11 @@ h2 {
   display: block;
 }
 
+.lecturer-links a:first-child img {
+  width: 30px;      /* ajusta: prueba 10px, 12px, 14px */
+  height: 30px;
+}
+
 /* =========================
    CAROUSEL
    ========================= */
