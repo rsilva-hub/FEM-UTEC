@@ -326,6 +326,35 @@ h2 {
   text-align: justify;
 }
 
+.lecturer-links {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.lecturer-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lecturer-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.lecturer-links img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
 /* =========================
    CAROUSEL
    ========================= */
