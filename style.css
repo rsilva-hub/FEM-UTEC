@@ -350,8 +350,8 @@ h2 {
 }
 
 .lecturer-links img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: auto;
   object-fit: contain;
   display: block;
 }
