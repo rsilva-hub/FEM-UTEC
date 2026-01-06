@@ -344,11 +344,6 @@ h2 {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.lecturer-links a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
-}
-
 .lecturer-links img {
   width: 32px;
   height: auto;
